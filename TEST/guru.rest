@@ -1,0 +1,117 @@
+###
+GET http://localhost:5000/auth/refresh
+
+###
+DELETE http://localhost:5000/auth/logout
+
+###
+POST http://localhost:5000/auth/login
+Content-Type: application/json
+
+{
+    "username":"della",
+    "password":"della"
+}
+
+###
+GET http://localhost:5000/guru/get-profil
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImRlbGxhIiwicm9sZSI6Imd1cnUiLCJpc05ldyI6Im5vIiwiaWF0IjoxNjUzMDQwOTg0LCJleHAiOjE2NTMwNDEwMDR9.KaIln8xRyGgoQrkPVINsB2L68WnaDZXaGl9DFTPLkpg
+
+###
+POST http://localhost:5000/guru/add-profil
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImRlbGxhIiwiaWF0IjoxNjUyNzk3NzY2LCJleHAiOjE2NTI3OTc3ODZ9.hzKCcjWKiwoUIgMgKUXh2HvLxdkpvK3qRHxXxfXrQ6s
+Content-Type: application/json
+
+{
+    "nip":"1805420",
+    "namaGuru":"della"
+}
+
+###
+GET http://localhost:5000/guru/get-akun-siswa
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF9ha3VuIjoyMSwidXNlcm5hbWUiOiJkZWxsYSIsInJvbGUiOiJndXJ1IiwiaWF0IjoxNjUyODgyNzgxLCJleHAiOjE2NTI5MDQzODF9.t3X8b6Q9JsNbOSiMT4m2K5UsL8_f9DQQJRNmTNEVl58
+
+###
+POST http://localhost:5000/guru/add-akun-siswa
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImRlbGxhIiwiaWF0IjoxNjUyNzk5NDE3LCJleHAiOjE2NTI3OTk0Mzd9.Bx3UDTGsluuBMs6W230R5HdT1Vl19CsWBQqlUuZ3Xas
+Content-Type: application/json
+
+{
+    "username":"siswa1",
+    "password":"siswa1"
+}
+
+###
+POST http://localhost:5000/guru/add-course
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImRlbGxhIiwiaWF0IjoxNjUyNzk5NDUwLCJleHAiOjE2NTI3OTk0NzB9.WXkzCHGE3l0eNZDsUWLVh59Px3P2t6-4MZO7NymSeoY
+Content-Type: application/json
+
+{
+    "codeCourse":"4011231",
+    "judulCourse":"HTML Dasar",
+    "deskripsiCourse":"Course untuk mempelajari HTML",
+    "idProfil":"9"
+}
+
+###
+POST http://localhost:5000/guru/add-materi
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImRlbGxhIiwiaWF0IjoxNjUyODAzMzQ0LCJleHAiOjE2NTI4MjQ5NDR9.pn87N8rAprHjmHaNVgMZMSmdt-MLxsL7CR5yKmn3PcM
+Content-Type: application/json
+
+{
+    "judulMateri":"Basic HTML Tag",
+    "isiMateri":"<h1>hello world<h1>",
+    "pointMateri":"50",
+    "idCourse":"8"
+}
+
+###
+POST http://localhost:5000/guru/add-exercise
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF9ha3VuIjoyMSwidXNlcm5hbWUiOiJkZWxsYSIsInJvbGUiOiJndXJ1IiwiaWF0IjoxNjUyODAzMDQ2LCJleHAiOjE2NTI4MjQ2NDZ9._6nHAr7F1QVHJ_-evjYWWYc9wwZeU0ZDjbWFM9LC6pc
+Content-Type: application/json
+
+{
+    "judulExercise":"Latihan HTML",
+    "idCourse":"8"
+}
+
+###
+POST http://localhost:5000/guru/add-exercise-soal
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF9ha3VuIjoyMSwidXNlcm5hbWUiOiJkZWxsYSIsInJvbGUiOiJndXJ1IiwiaWF0IjoxNjUyODA0NDk4LCJleHAiOjE2NTI4MjYwOTh9.4Y96SkgClFsr-Aybfo4vtbx7ppZ62P2UpCnEI642YwM
+Content-Type: application/json
+
+{
+    "nomorSoal":"2",
+    "pertanyaanSoal":"sebutkan kegunaan tag h1",
+    "optionA":"membuat paragraf",
+    "optionB":"membuat heading",
+    "optionC":"membuat hirarki",
+    "optionD":"membuat bold teks",
+    "optionKey":"option_b",
+    "pointSoal":"100",
+    "idExercise":"9"
+    
+}
+
+
+###
+GET http://localhost:5000/course/get-course
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF9ha3VuIjoyMSwidXNlcm5hbWUiOiJkZWxsYSIsInJvbGUiOiJndXJ1IiwiaXNOZXciOiJubyIsImlhdCI6MTY1MzEyNTYyOCwiZXhwIjoxNjUzMTI1NjQ4fQ.X9G7wP87UzCrNYXds7dYwW-UXH2W6UXPQJagrK4leps
+
+
+###
+GET http://localhost:5000/course/get-course-detail/8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF9ha3VuIjoyMSwidXNlcm5hbWUiOiJkZWxsYSIsInJvbGUiOiJndXJ1IiwiaXNOZXciOiJubyIsImlhdCI6MTY1MzA1OTA2NywiZXhwIjoxNjUzMDU5MDg3fQ.uDr6ciuWKX2GShDA63hOPIZt69_JkIEL6HEs1uGeS1Y
+
+###
+GET http://localhost:5000/course/get-course-materi/8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImRlbGxhIiwicm9sZSI6Imd1cnUiLCJpc05ldyI6Im5vIiwiaWF0IjoxNjUzMDQyMTI2LCJleHAiOjE2NTMwNDIxNDZ9.fNLd-DgJ7MwrshwbHR2WHyuO83BwciCqah9nK0ryvYA
+
+###
+GET http://localhost:5000/course/get-course-exercise/8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF9ha3VuIjoyMSwidXNlcm5hbWUiOiJkZWxsYSIsInJvbGUiOiJndXJ1IiwiaXNOZXciOiJubyIsImlhdCI6MTY1MzA1MTYxOSwiZXhwIjoxNjUzMDUxNjM5fQ.odhcYSQudFWpT0SN1a2odpkM6BNz0zaDmggImXUQdJU
+
+
+###
+GET http://localhost:5000/course/get-course-exercise/9/soal
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImRlbGxhIiwicm9sZSI6Imd1cnUiLCJpc05ldyI6Im5vIiwiaWF0IjoxNjUzMDUyMTg0LCJleHAiOjE2NTMwNTIyMDR9.jfZ3jYyzR4IkoXZJodh64RXrWAHucqLuDH-F91iX_7Y

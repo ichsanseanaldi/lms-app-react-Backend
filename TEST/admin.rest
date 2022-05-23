@@ -1,0 +1,28 @@
+###
+GET http://localhost:5000/auth/refresh
+
+###
+DELETE http://localhost:5000/auth/logout
+
+###
+POST http://localhost:5000/auth/login
+Content-Type: application/json
+
+{
+    "username":"admin",
+    "password":"admin"
+}
+
+###
+POST http://localhost:5000/admin/register-akun
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaWF0IjoxNjUyNzkzMjg0LCJleHAiOjE2NTI3OTMzMDR9.PdUgOQ410_47tCQoBbP-z4fDBOOFri18Z9BkJcygimI
+Content-Type: application/json
+
+{
+    "username":"della",
+    "password":"della"
+}
+
+###
+GET http://localhost:5000/admin/get-akun-guru
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF9ha3VuIjoxLCJ1c2VybmFtZSI6ImFkbWluIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjUyNzE3NDYwLCJleHAiOjE2NTI3MTc0ODB9.5mn15g7l47L8Se57_i1N3KYPTo67M9uKLp_Wf6qb21w
