@@ -26,7 +26,7 @@ try {
 
 app.use(cors({
     credentials: true,
-    origin: true,
+    origin: 'https://app-lms.netlify.app',
 }))
 
 app.use(cookieParser());
