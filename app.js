@@ -26,10 +26,8 @@ try {
 
 app.use(cors({
     credentials: true,
-    origin: 'https://app-lms.netlify.app/',
+    origin: 'https://app-lms.netlify.app',
     methods: ['GET', 'PUT', 'POST'],
-    preflightContinue: false,
-    optionsSuccessStatus: 204,
     allowedHeaders: ['Content-Type', 'Authorization']
 
 }))
