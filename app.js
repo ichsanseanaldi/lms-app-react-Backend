@@ -27,10 +27,8 @@ try {
 app.use(cors({
     credentials: true,
     origin: 'https://app-lms.netlify.app',
-    methods: ['GET', 'PUT', 'POST'],
-    allowedHeaders: ['Content-Type', 'Authorization']
-
 }))
+
 app.use(cookieParser());
 app.use(express.json());
 
