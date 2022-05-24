@@ -44,7 +44,7 @@ export const Login = async (req, res) => {
 
     } catch (error) {
 
-        res.status(400).json({ msg: "error gan!" })
+        res.status(400).json({ msg: "error gan!", error: error })
 
     }
 
