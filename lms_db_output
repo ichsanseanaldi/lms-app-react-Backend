@@ -1,0 +1,1916 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 14.3
+-- Dumped by pg_dump version 14.3
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- Name: a_d_akun_f(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.a_d_akun_f() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$ 					   DECLARE 					   time_mark TIMESTAMP; 					   pk_d VARCHAR(400); 					   tbl_name VARCHAR(100); 					   rec_state INTEGER; 					   rs INTEGER; 					   BEGIN 					   time_mark = now()+'0 second'::interval; 					   rs = 0;						   rec_state = 3; 					   tbl_name = 'akun'; 					   pk_d = '<id_akun>'||OLD."id_akun"||'</id_akun>'; 					   SELECT record_state INTO rs FROM "public"."history_store" WHERE table_name = tbl_name AND pk_date_src = pk_d; 					   IF @rs = 1 THEN 					   DELETE FROM "public"."history_store" WHERE table_name = tbl_name AND pk_date_src = pk_d; 					   END IF; 					   IF @rs > 1 THEN 					   UPDATE "public"."history_store" SET timemark = time_mark, record_state = 3, pk_date_src = pk_date_dest WHERE table_name = tbl_name AND pk_date_src = pk_d; 					   END IF; 					   IF ((rs ISNULL) OR (rs = 0)) THEN 					   INSERT INTO "public"."history_store"(timemark, table_name, pk_date_src, pk_date_dest, record_state) VALUES (time_mark, tbl_name, pk_d, pk_d, rec_state ); 					   END IF; 					   RETURN OLD; 					   END; 					   $$;
+
+
+--
+-- Name: a_d_badges_f(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.a_d_badges_f() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$ 					   DECLARE 					   time_mark TIMESTAMP; 					   pk_d VARCHAR(400); 					   tbl_name VARCHAR(100); 					   rec_state INTEGER; 					   rs INTEGER; 					   BEGIN 					   time_mark = now()+'0 second'::interval; 					   rs = 0;						   rec_state = 3; 					   tbl_name = 'badges'; 					   pk_d = '<id_badges>'||OLD."id_badges"||'</id_badges>'; 					   SELECT record_state INTO rs FROM "public"."history_store" WHERE table_name = tbl_name AND pk_date_src = pk_d; 					   IF @rs = 1 THEN 					   DELETE FROM "public"."history_store" WHERE table_name = tbl_name AND pk_date_src = pk_d; 					   END IF; 					   IF @rs > 1 THEN 					   UPDATE "public"."history_store" SET timemark = time_mark, record_state = 3, pk_date_src = pk_date_dest WHERE table_name = tbl_name AND pk_date_src = pk_d; 					   END IF; 					   IF ((rs ISNULL) OR (rs = 0)) THEN 					   INSERT INTO "public"."history_store"(timemark, table_name, pk_date_src, pk_date_dest, record_state) VALUES (time_mark, tbl_name, pk_d, pk_d, rec_state ); 					   END IF; 					   RETURN OLD; 					   END; 					   $$;
+
+
+--
+-- Name: a_d_course_exercise_f(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.a_d_course_exercise_f() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$ 					   DECLARE 					   time_mark TIMESTAMP; 					   pk_d VARCHAR(400); 					   tbl_name VARCHAR(100); 					   rec_state INTEGER; 					   rs INTEGER; 					   BEGIN 					   time_mark = now()+'0 second'::interval; 					   rs = 0;						   rec_state = 3; 					   tbl_name = 'course_exercise'; 					   pk_d = '<id_exercise>'||OLD."id_exercise"||'</id_exercise>'; 					   SELECT record_state INTO rs FROM "public"."history_store" WHERE table_name = tbl_name AND pk_date_src = pk_d; 					   IF @rs = 1 THEN 					   DELETE FROM "public"."history_store" WHERE table_name = tbl_name AND pk_date_src = pk_d; 					   END IF; 					   IF @rs > 1 THEN 					   UPDATE "public"."history_store" SET timemark = time_mark, record_state = 3, pk_date_src = pk_date_dest WHERE table_name = tbl_name AND pk_date_src = pk_d; 					   END IF; 					   IF ((rs ISNULL) OR (rs = 0)) THEN 					   INSERT INTO "public"."history_store"(timemark, table_name, pk_date_src, pk_date_dest, record_state) VALUES (time_mark, tbl_name, pk_d, pk_d, rec_state ); 					   END IF; 					   RETURN OLD; 					   END; 					   $$;
+
+
+--
+-- Name: a_d_course_exercise_soal_f(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.a_d_course_exercise_soal_f() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$ 					   DECLARE 					   time_mark TIMESTAMP; 					   pk_d VARCHAR(400); 					   tbl_name VARCHAR(100); 					   rec_state INTEGER; 					   rs INTEGER; 					   BEGIN 					   time_mark = now()+'0 second'::interval; 					   rs = 0;						   rec_state = 3; 					   tbl_name = 'course_exercise_soal'; 					   pk_d = '<id_soal>'||OLD."id_soal"||'</id_soal>'; 					   SELECT record_state INTO rs FROM "public"."history_store" WHERE table_name = tbl_name AND pk_date_src = pk_d; 					   IF @rs = 1 THEN 					   DELETE FROM "public"."history_store" WHERE table_name = tbl_name AND pk_date_src = pk_d; 					   END IF; 					   IF @rs > 1 THEN 					   UPDATE "public"."history_store" SET timemark = time_mark, record_state = 3, pk_date_src = pk_date_dest WHERE table_name = tbl_name AND pk_date_src = pk_d; 					   END IF; 					   IF ((rs ISNULL) OR (rs = 0)) THEN 					   INSERT INTO "public"."history_store"(timemark, table_name, pk_date_src, pk_date_dest, record_state) VALUES (time_mark, tbl_name, pk_d, pk_d, rec_state ); 					   END IF; 					   RETURN OLD; 					   END; 					   $$;
+
+
+--
+-- Name: a_d_course_f(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.a_d_course_f() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$ 					   DECLARE 					   time_mark TIMESTAMP; 					   pk_d VARCHAR(400); 					   tbl_name VARCHAR(100); 					   rec_state INTEGER; 					   rs INTEGER; 					   BEGIN 					   time_mark = now()+'0 second'::interval; 					   rs = 0;						   rec_state = 3; 					   tbl_name = 'course'; 					   pk_d = '<id_course>'||OLD."id_course"||'</id_course>'; 					   SELECT record_state INTO rs FROM "public"."history_store" WHERE table_name = tbl_name AND pk_date_src = pk_d; 					   IF @rs = 1 THEN 					   DELETE FROM "public"."history_store" WHERE table_name = tbl_name AND pk_date_src = pk_d; 					   END IF; 					   IF @rs > 1 THEN 					   UPDATE "public"."history_store" SET timemark = time_mark, record_state = 3, pk_date_src = pk_date_dest WHERE table_name = tbl_name AND pk_date_src = pk_d; 					   END IF; 					   IF ((rs ISNULL) OR (rs = 0)) THEN 					   INSERT INTO "public"."history_store"(timemark, table_name, pk_date_src, pk_date_dest, record_state) VALUES (time_mark, tbl_name, pk_d, pk_d, rec_state ); 					   END IF; 					   RETURN OLD; 					   END; 					   $$;
+
+
+--
+-- Name: a_d_course_materi_f(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.a_d_course_materi_f() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$ 					   DECLARE 					   time_mark TIMESTAMP; 					   pk_d VARCHAR(400); 					   tbl_name VARCHAR(100); 					   rec_state INTEGER; 					   rs INTEGER; 					   BEGIN 					   time_mark = now()+'0 second'::interval; 					   rs = 0;						   rec_state = 3; 					   tbl_name = 'course_materi'; 					   pk_d = '<id_materi>'||OLD."id_materi"||'</id_materi>'; 					   SELECT record_state INTO rs FROM "public"."history_store" WHERE table_name = tbl_name AND pk_date_src = pk_d; 					   IF @rs = 1 THEN 					   DELETE FROM "public"."history_store" WHERE table_name = tbl_name AND pk_date_src = pk_d; 					   END IF; 					   IF @rs > 1 THEN 					   UPDATE "public"."history_store" SET timemark = time_mark, record_state = 3, pk_date_src = pk_date_dest WHERE table_name = tbl_name AND pk_date_src = pk_d; 					   END IF; 					   IF ((rs ISNULL) OR (rs = 0)) THEN 					   INSERT INTO "public"."history_store"(timemark, table_name, pk_date_src, pk_date_dest, record_state) VALUES (time_mark, tbl_name, pk_d, pk_d, rec_state ); 					   END IF; 					   RETURN OLD; 					   END; 					   $$;
+
+
+--
+-- Name: a_d_joint_exercise_f(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.a_d_joint_exercise_f() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$ 					   DECLARE 					   time_mark TIMESTAMP; 					   pk_d VARCHAR(400); 					   tbl_name VARCHAR(100); 					   rec_state INTEGER; 					   rs INTEGER; 					   BEGIN 					   time_mark = now()+'0 second'::interval; 					   rs = 0;						   rec_state = 3; 					   tbl_name = 'joint_exercise'; 					   pk_d = '<id_joint_exercise>'||OLD."id_joint_exercise"||'</id_joint_exercise>'; 					   SELECT record_state INTO rs FROM "public"."history_store" WHERE table_name = tbl_name AND pk_date_src = pk_d; 					   IF @rs = 1 THEN 					   DELETE FROM "public"."history_store" WHERE table_name = tbl_name AND pk_date_src = pk_d; 					   END IF; 					   IF @rs > 1 THEN 					   UPDATE "public"."history_store" SET timemark = time_mark, record_state = 3, pk_date_src = pk_date_dest WHERE table_name = tbl_name AND pk_date_src = pk_d; 					   END IF; 					   IF ((rs ISNULL) OR (rs = 0)) THEN 					   INSERT INTO "public"."history_store"(timemark, table_name, pk_date_src, pk_date_dest, record_state) VALUES (time_mark, tbl_name, pk_d, pk_d, rec_state ); 					   END IF; 					   RETURN OLD; 					   END; 					   $$;
+
+
+--
+-- Name: a_d_joint_materi_f(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.a_d_joint_materi_f() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$ 					   DECLARE 					   time_mark TIMESTAMP; 					   pk_d VARCHAR(400); 					   tbl_name VARCHAR(100); 					   rec_state INTEGER; 					   rs INTEGER; 					   BEGIN 					   time_mark = now()+'0 second'::interval; 					   rs = 0;						   rec_state = 3; 					   tbl_name = 'joint_materi'; 					   pk_d = '<id_joint_materi>'||OLD."id_joint_materi"||'</id_joint_materi>'; 					   SELECT record_state INTO rs FROM "public"."history_store" WHERE table_name = tbl_name AND pk_date_src = pk_d; 					   IF @rs = 1 THEN 					   DELETE FROM "public"."history_store" WHERE table_name = tbl_name AND pk_date_src = pk_d; 					   END IF; 					   IF @rs > 1 THEN 					   UPDATE "public"."history_store" SET timemark = time_mark, record_state = 3, pk_date_src = pk_date_dest WHERE table_name = tbl_name AND pk_date_src = pk_d; 					   END IF; 					   IF ((rs ISNULL) OR (rs = 0)) THEN 					   INSERT INTO "public"."history_store"(timemark, table_name, pk_date_src, pk_date_dest, record_state) VALUES (time_mark, tbl_name, pk_d, pk_d, rec_state ); 					   END IF; 					   RETURN OLD; 					   END; 					   $$;
+
+
+--
+-- Name: a_d_joint_siswa_badges_f(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.a_d_joint_siswa_badges_f() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$ 					   DECLARE 					   time_mark TIMESTAMP; 					   pk_d VARCHAR(400); 					   tbl_name VARCHAR(100); 					   rec_state INTEGER; 					   rs INTEGER; 					   BEGIN 					   time_mark = now()+'0 second'::interval; 					   rs = 0;						   rec_state = 3; 					   tbl_name = 'joint_siswa_badges'; 					   pk_d = '<id_joint_badges>'||OLD."id_joint_badges"||'</id_joint_badges>'; 					   SELECT record_state INTO rs FROM "public"."history_store" WHERE table_name = tbl_name AND pk_date_src = pk_d; 					   IF @rs = 1 THEN 					   DELETE FROM "public"."history_store" WHERE table_name = tbl_name AND pk_date_src = pk_d; 					   END IF; 					   IF @rs > 1 THEN 					   UPDATE "public"."history_store" SET timemark = time_mark, record_state = 3, pk_date_src = pk_date_dest WHERE table_name = tbl_name AND pk_date_src = pk_d; 					   END IF; 					   IF ((rs ISNULL) OR (rs = 0)) THEN 					   INSERT INTO "public"."history_store"(timemark, table_name, pk_date_src, pk_date_dest, record_state) VALUES (time_mark, tbl_name, pk_d, pk_d, rec_state ); 					   END IF; 					   RETURN OLD; 					   END; 					   $$;
+
+
+--
+-- Name: a_d_joint_siswa_course_f(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.a_d_joint_siswa_course_f() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$ 					   DECLARE 					   time_mark TIMESTAMP; 					   pk_d VARCHAR(400); 					   tbl_name VARCHAR(100); 					   rec_state INTEGER; 					   rs INTEGER; 					   BEGIN 					   time_mark = now()+'0 second'::interval; 					   rs = 0;						   rec_state = 3; 					   tbl_name = 'joint_siswa_course'; 					   pk_d = '<id_joint_course>'||OLD."id_joint_course"||'</id_joint_course>'; 					   SELECT record_state INTO rs FROM "public"."history_store" WHERE table_name = tbl_name AND pk_date_src = pk_d; 					   IF @rs = 1 THEN 					   DELETE FROM "public"."history_store" WHERE table_name = tbl_name AND pk_date_src = pk_d; 					   END IF; 					   IF @rs > 1 THEN 					   UPDATE "public"."history_store" SET timemark = time_mark, record_state = 3, pk_date_src = pk_date_dest WHERE table_name = tbl_name AND pk_date_src = pk_d; 					   END IF; 					   IF ((rs ISNULL) OR (rs = 0)) THEN 					   INSERT INTO "public"."history_store"(timemark, table_name, pk_date_src, pk_date_dest, record_state) VALUES (time_mark, tbl_name, pk_d, pk_d, rec_state ); 					   END IF; 					   RETURN OLD; 					   END; 					   $$;
+
+
+--
+-- Name: a_d_profil_guru_f(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.a_d_profil_guru_f() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$ 					   DECLARE 					   time_mark TIMESTAMP; 					   pk_d VARCHAR(400); 					   tbl_name VARCHAR(100); 					   rec_state INTEGER; 					   rs INTEGER; 					   BEGIN 					   time_mark = now()+'0 second'::interval; 					   rs = 0;						   rec_state = 3; 					   tbl_name = 'profil_guru'; 					   pk_d = '<id_profil_guru>'||OLD."id_profil_guru"||'</id_profil_guru>'; 					   SELECT record_state INTO rs FROM "public"."history_store" WHERE table_name = tbl_name AND pk_date_src = pk_d; 					   IF @rs = 1 THEN 					   DELETE FROM "public"."history_store" WHERE table_name = tbl_name AND pk_date_src = pk_d; 					   END IF; 					   IF @rs > 1 THEN 					   UPDATE "public"."history_store" SET timemark = time_mark, record_state = 3, pk_date_src = pk_date_dest WHERE table_name = tbl_name AND pk_date_src = pk_d; 					   END IF; 					   IF ((rs ISNULL) OR (rs = 0)) THEN 					   INSERT INTO "public"."history_store"(timemark, table_name, pk_date_src, pk_date_dest, record_state) VALUES (time_mark, tbl_name, pk_d, pk_d, rec_state ); 					   END IF; 					   RETURN OLD; 					   END; 					   $$;
+
+
+--
+-- Name: a_d_profil_siswa_f(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.a_d_profil_siswa_f() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$ 					   DECLARE 					   time_mark TIMESTAMP; 					   pk_d VARCHAR(400); 					   tbl_name VARCHAR(100); 					   rec_state INTEGER; 					   rs INTEGER; 					   BEGIN 					   time_mark = now()+'0 second'::interval; 					   rs = 0;						   rec_state = 3; 					   tbl_name = 'profil_siswa'; 					   pk_d = '<id_profil_siswa>'||OLD."id_profil_siswa"||'</id_profil_siswa>'; 					   SELECT record_state INTO rs FROM "public"."history_store" WHERE table_name = tbl_name AND pk_date_src = pk_d; 					   IF @rs = 1 THEN 					   DELETE FROM "public"."history_store" WHERE table_name = tbl_name AND pk_date_src = pk_d; 					   END IF; 					   IF @rs > 1 THEN 					   UPDATE "public"."history_store" SET timemark = time_mark, record_state = 3, pk_date_src = pk_date_dest WHERE table_name = tbl_name AND pk_date_src = pk_d; 					   END IF; 					   IF ((rs ISNULL) OR (rs = 0)) THEN 					   INSERT INTO "public"."history_store"(timemark, table_name, pk_date_src, pk_date_dest, record_state) VALUES (time_mark, tbl_name, pk_d, pk_d, rec_state ); 					   END IF; 					   RETURN OLD; 					   END; 					   $$;
+
+
+--
+-- Name: a_i_akun_f(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.a_i_akun_f() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$ 						DECLARE 							time_mark TIMESTAMP; 							rec_state INTEGER; 							pk_d VARCHAR(400); 							tbl_name VARCHAR(100); 						BEGIN 							time_mark = now()+'0 second'::interval; 							tbl_name = 'akun'; 							pk_d = '<id_akun>'||NEW."id_akun"||'</id_akun>'; 							rec_state = 1;							UPDATE "public"."history_store" SET pk_date_dest = pk_date_src WHERE table_name = tbl_name AND pk_date_dest = pk_d AND (record_state = 2 OR record_state = 1); 							DELETE FROM "public"."history_store" WHERE table_name = tbl_name AND pk_date_dest = pk_d; 							INSERT INTO "public"."history_store"( timemark, table_name, pk_date_src, pk_date_dest, record_state ) 								VALUES (time_mark, tbl_name, pk_d, pk_d, rec_state ); 							RETURN NEW; 						END; 						$$;
+
+
+--
+-- Name: a_i_badges_f(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.a_i_badges_f() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$ 						DECLARE 							time_mark TIMESTAMP; 							rec_state INTEGER; 							pk_d VARCHAR(400); 							tbl_name VARCHAR(100); 						BEGIN 							time_mark = now()+'0 second'::interval; 							tbl_name = 'badges'; 							pk_d = '<id_badges>'||NEW."id_badges"||'</id_badges>'; 							rec_state = 1;							UPDATE "public"."history_store" SET pk_date_dest = pk_date_src WHERE table_name = tbl_name AND pk_date_dest = pk_d AND (record_state = 2 OR record_state = 1); 							DELETE FROM "public"."history_store" WHERE table_name = tbl_name AND pk_date_dest = pk_d; 							INSERT INTO "public"."history_store"( timemark, table_name, pk_date_src, pk_date_dest, record_state ) 								VALUES (time_mark, tbl_name, pk_d, pk_d, rec_state ); 							RETURN NEW; 						END; 						$$;
+
+
+--
+-- Name: a_i_course_exercise_f(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.a_i_course_exercise_f() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$ 						DECLARE 							time_mark TIMESTAMP; 							rec_state INTEGER; 							pk_d VARCHAR(400); 							tbl_name VARCHAR(100); 						BEGIN 							time_mark = now()+'0 second'::interval; 							tbl_name = 'course_exercise'; 							pk_d = '<id_exercise>'||NEW."id_exercise"||'</id_exercise>'; 							rec_state = 1;							UPDATE "public"."history_store" SET pk_date_dest = pk_date_src WHERE table_name = tbl_name AND pk_date_dest = pk_d AND (record_state = 2 OR record_state = 1); 							DELETE FROM "public"."history_store" WHERE table_name = tbl_name AND pk_date_dest = pk_d; 							INSERT INTO "public"."history_store"( timemark, table_name, pk_date_src, pk_date_dest, record_state ) 								VALUES (time_mark, tbl_name, pk_d, pk_d, rec_state ); 							RETURN NEW; 						END; 						$$;
+
+
+--
+-- Name: a_i_course_exercise_soal_f(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.a_i_course_exercise_soal_f() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$ 						DECLARE 							time_mark TIMESTAMP; 							rec_state INTEGER; 							pk_d VARCHAR(400); 							tbl_name VARCHAR(100); 						BEGIN 							time_mark = now()+'0 second'::interval; 							tbl_name = 'course_exercise_soal'; 							pk_d = '<id_soal>'||NEW."id_soal"||'</id_soal>'; 							rec_state = 1;							UPDATE "public"."history_store" SET pk_date_dest = pk_date_src WHERE table_name = tbl_name AND pk_date_dest = pk_d AND (record_state = 2 OR record_state = 1); 							DELETE FROM "public"."history_store" WHERE table_name = tbl_name AND pk_date_dest = pk_d; 							INSERT INTO "public"."history_store"( timemark, table_name, pk_date_src, pk_date_dest, record_state ) 								VALUES (time_mark, tbl_name, pk_d, pk_d, rec_state ); 							RETURN NEW; 						END; 						$$;
+
+
+--
+-- Name: a_i_course_f(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.a_i_course_f() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$ 						DECLARE 							time_mark TIMESTAMP; 							rec_state INTEGER; 							pk_d VARCHAR(400); 							tbl_name VARCHAR(100); 						BEGIN 							time_mark = now()+'0 second'::interval; 							tbl_name = 'course'; 							pk_d = '<id_course>'||NEW."id_course"||'</id_course>'; 							rec_state = 1;							UPDATE "public"."history_store" SET pk_date_dest = pk_date_src WHERE table_name = tbl_name AND pk_date_dest = pk_d AND (record_state = 2 OR record_state = 1); 							DELETE FROM "public"."history_store" WHERE table_name = tbl_name AND pk_date_dest = pk_d; 							INSERT INTO "public"."history_store"( timemark, table_name, pk_date_src, pk_date_dest, record_state ) 								VALUES (time_mark, tbl_name, pk_d, pk_d, rec_state ); 							RETURN NEW; 						END; 						$$;
+
+
+--
+-- Name: a_i_course_materi_f(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.a_i_course_materi_f() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$ 						DECLARE 							time_mark TIMESTAMP; 							rec_state INTEGER; 							pk_d VARCHAR(400); 							tbl_name VARCHAR(100); 						BEGIN 							time_mark = now()+'0 second'::interval; 							tbl_name = 'course_materi'; 							pk_d = '<id_materi>'||NEW."id_materi"||'</id_materi>'; 							rec_state = 1;							UPDATE "public"."history_store" SET pk_date_dest = pk_date_src WHERE table_name = tbl_name AND pk_date_dest = pk_d AND (record_state = 2 OR record_state = 1); 							DELETE FROM "public"."history_store" WHERE table_name = tbl_name AND pk_date_dest = pk_d; 							INSERT INTO "public"."history_store"( timemark, table_name, pk_date_src, pk_date_dest, record_state ) 								VALUES (time_mark, tbl_name, pk_d, pk_d, rec_state ); 							RETURN NEW; 						END; 						$$;
+
+
+--
+-- Name: a_i_joint_exercise_f(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.a_i_joint_exercise_f() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$ 						DECLARE 							time_mark TIMESTAMP; 							rec_state INTEGER; 							pk_d VARCHAR(400); 							tbl_name VARCHAR(100); 						BEGIN 							time_mark = now()+'0 second'::interval; 							tbl_name = 'joint_exercise'; 							pk_d = '<id_joint_exercise>'||NEW."id_joint_exercise"||'</id_joint_exercise>'; 							rec_state = 1;							UPDATE "public"."history_store" SET pk_date_dest = pk_date_src WHERE table_name = tbl_name AND pk_date_dest = pk_d AND (record_state = 2 OR record_state = 1); 							DELETE FROM "public"."history_store" WHERE table_name = tbl_name AND pk_date_dest = pk_d; 							INSERT INTO "public"."history_store"( timemark, table_name, pk_date_src, pk_date_dest, record_state ) 								VALUES (time_mark, tbl_name, pk_d, pk_d, rec_state ); 							RETURN NEW; 						END; 						$$;
+
+
+--
+-- Name: a_i_joint_materi_f(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.a_i_joint_materi_f() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$ 						DECLARE 							time_mark TIMESTAMP; 							rec_state INTEGER; 							pk_d VARCHAR(400); 							tbl_name VARCHAR(100); 						BEGIN 							time_mark = now()+'0 second'::interval; 							tbl_name = 'joint_materi'; 							pk_d = '<id_joint_materi>'||NEW."id_joint_materi"||'</id_joint_materi>'; 							rec_state = 1;							UPDATE "public"."history_store" SET pk_date_dest = pk_date_src WHERE table_name = tbl_name AND pk_date_dest = pk_d AND (record_state = 2 OR record_state = 1); 							DELETE FROM "public"."history_store" WHERE table_name = tbl_name AND pk_date_dest = pk_d; 							INSERT INTO "public"."history_store"( timemark, table_name, pk_date_src, pk_date_dest, record_state ) 								VALUES (time_mark, tbl_name, pk_d, pk_d, rec_state ); 							RETURN NEW; 						END; 						$$;
+
+
+--
+-- Name: a_i_joint_siswa_badges_f(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.a_i_joint_siswa_badges_f() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$ 						DECLARE 							time_mark TIMESTAMP; 							rec_state INTEGER; 							pk_d VARCHAR(400); 							tbl_name VARCHAR(100); 						BEGIN 							time_mark = now()+'0 second'::interval; 							tbl_name = 'joint_siswa_badges'; 							pk_d = '<id_joint_badges>'||NEW."id_joint_badges"||'</id_joint_badges>'; 							rec_state = 1;							UPDATE "public"."history_store" SET pk_date_dest = pk_date_src WHERE table_name = tbl_name AND pk_date_dest = pk_d AND (record_state = 2 OR record_state = 1); 							DELETE FROM "public"."history_store" WHERE table_name = tbl_name AND pk_date_dest = pk_d; 							INSERT INTO "public"."history_store"( timemark, table_name, pk_date_src, pk_date_dest, record_state ) 								VALUES (time_mark, tbl_name, pk_d, pk_d, rec_state ); 							RETURN NEW; 						END; 						$$;
+
+
+--
+-- Name: a_i_joint_siswa_course_f(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.a_i_joint_siswa_course_f() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$ 						DECLARE 							time_mark TIMESTAMP; 							rec_state INTEGER; 							pk_d VARCHAR(400); 							tbl_name VARCHAR(100); 						BEGIN 							time_mark = now()+'0 second'::interval; 							tbl_name = 'joint_siswa_course'; 							pk_d = '<id_joint_course>'||NEW."id_joint_course"||'</id_joint_course>'; 							rec_state = 1;							UPDATE "public"."history_store" SET pk_date_dest = pk_date_src WHERE table_name = tbl_name AND pk_date_dest = pk_d AND (record_state = 2 OR record_state = 1); 							DELETE FROM "public"."history_store" WHERE table_name = tbl_name AND pk_date_dest = pk_d; 							INSERT INTO "public"."history_store"( timemark, table_name, pk_date_src, pk_date_dest, record_state ) 								VALUES (time_mark, tbl_name, pk_d, pk_d, rec_state ); 							RETURN NEW; 						END; 						$$;
+
+
+--
+-- Name: a_i_profil_guru_f(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.a_i_profil_guru_f() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$ 						DECLARE 							time_mark TIMESTAMP; 							rec_state INTEGER; 							pk_d VARCHAR(400); 							tbl_name VARCHAR(100); 						BEGIN 							time_mark = now()+'0 second'::interval; 							tbl_name = 'profil_guru'; 							pk_d = '<id_profil_guru>'||NEW."id_profil_guru"||'</id_profil_guru>'; 							rec_state = 1;							UPDATE "public"."history_store" SET pk_date_dest = pk_date_src WHERE table_name = tbl_name AND pk_date_dest = pk_d AND (record_state = 2 OR record_state = 1); 							DELETE FROM "public"."history_store" WHERE table_name = tbl_name AND pk_date_dest = pk_d; 							INSERT INTO "public"."history_store"( timemark, table_name, pk_date_src, pk_date_dest, record_state ) 								VALUES (time_mark, tbl_name, pk_d, pk_d, rec_state ); 							RETURN NEW; 						END; 						$$;
+
+
+--
+-- Name: a_i_profil_siswa_f(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.a_i_profil_siswa_f() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$ 						DECLARE 							time_mark TIMESTAMP; 							rec_state INTEGER; 							pk_d VARCHAR(400); 							tbl_name VARCHAR(100); 						BEGIN 							time_mark = now()+'0 second'::interval; 							tbl_name = 'profil_siswa'; 							pk_d = '<id_profil_siswa>'||NEW."id_profil_siswa"||'</id_profil_siswa>'; 							rec_state = 1;							UPDATE "public"."history_store" SET pk_date_dest = pk_date_src WHERE table_name = tbl_name AND pk_date_dest = pk_d AND (record_state = 2 OR record_state = 1); 							DELETE FROM "public"."history_store" WHERE table_name = tbl_name AND pk_date_dest = pk_d; 							INSERT INTO "public"."history_store"( timemark, table_name, pk_date_src, pk_date_dest, record_state ) 								VALUES (time_mark, tbl_name, pk_d, pk_d, rec_state ); 							RETURN NEW; 						END; 						$$;
+
+
+--
+-- Name: a_u_akun_f(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.a_u_akun_f() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$ 		DECLARE 			time_mark TIMESTAMP; 			pk_d_old VARCHAR(400); 			pk_d VARCHAR(400); 			tbl_name VARCHAR(100); 			rec_state INTEGER; 			rs INTEGER; 		BEGIN 			time_mark = now()+'0 second'::interval; 			tbl_name = 'akun'; 			pk_d_old = '<id_akun>'||OLD."id_akun"||'</id_akun>'; 			pk_d = '<id_akun>'||NEW."id_akun"||'</id_akun>'; 			rec_state = 2; 			rs = 0; 			SELECT record_state INTO rs FROM "public"."history_store" WHERE table_name = tbl_name AND pk_date_src = pk_d_old; 			IF ((rs ISNULL) OR (rs = 0)) THEN 				INSERT INTO "public"."history_store"(timemark, table_name, pk_date_src, pk_date_dest, record_state)  					VALUES (time_mark, tbl_name, pk_d, pk_d_old, rec_state); 			ELSE 				UPDATE "public"."history_store" SET timemark = time_mark, pk_date_src = pk_d WHERE table_name = tbl_name AND pk_date_src = pk_d_old; 			END IF; 			RETURN NEW; 		END; 		$$;
+
+
+--
+-- Name: a_u_badges_f(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.a_u_badges_f() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$ 		DECLARE 			time_mark TIMESTAMP; 			pk_d_old VARCHAR(400); 			pk_d VARCHAR(400); 			tbl_name VARCHAR(100); 			rec_state INTEGER; 			rs INTEGER; 		BEGIN 			time_mark = now()+'0 second'::interval; 			tbl_name = 'badges'; 			pk_d_old = '<id_badges>'||OLD."id_badges"||'</id_badges>'; 			pk_d = '<id_badges>'||NEW."id_badges"||'</id_badges>'; 			rec_state = 2; 			rs = 0; 			SELECT record_state INTO rs FROM "public"."history_store" WHERE table_name = tbl_name AND pk_date_src = pk_d_old; 			IF ((rs ISNULL) OR (rs = 0)) THEN 				INSERT INTO "public"."history_store"(timemark, table_name, pk_date_src, pk_date_dest, record_state)  					VALUES (time_mark, tbl_name, pk_d, pk_d_old, rec_state); 			ELSE 				UPDATE "public"."history_store" SET timemark = time_mark, pk_date_src = pk_d WHERE table_name = tbl_name AND pk_date_src = pk_d_old; 			END IF; 			RETURN NEW; 		END; 		$$;
+
+
+--
+-- Name: a_u_course_exercise_f(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.a_u_course_exercise_f() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$ 		DECLARE 			time_mark TIMESTAMP; 			pk_d_old VARCHAR(400); 			pk_d VARCHAR(400); 			tbl_name VARCHAR(100); 			rec_state INTEGER; 			rs INTEGER; 		BEGIN 			time_mark = now()+'0 second'::interval; 			tbl_name = 'course_exercise'; 			pk_d_old = '<id_exercise>'||OLD."id_exercise"||'</id_exercise>'; 			pk_d = '<id_exercise>'||NEW."id_exercise"||'</id_exercise>'; 			rec_state = 2; 			rs = 0; 			SELECT record_state INTO rs FROM "public"."history_store" WHERE table_name = tbl_name AND pk_date_src = pk_d_old; 			IF ((rs ISNULL) OR (rs = 0)) THEN 				INSERT INTO "public"."history_store"(timemark, table_name, pk_date_src, pk_date_dest, record_state)  					VALUES (time_mark, tbl_name, pk_d, pk_d_old, rec_state); 			ELSE 				UPDATE "public"."history_store" SET timemark = time_mark, pk_date_src = pk_d WHERE table_name = tbl_name AND pk_date_src = pk_d_old; 			END IF; 			RETURN NEW; 		END; 		$$;
+
+
+--
+-- Name: a_u_course_exercise_soal_f(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.a_u_course_exercise_soal_f() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$ 		DECLARE 			time_mark TIMESTAMP; 			pk_d_old VARCHAR(400); 			pk_d VARCHAR(400); 			tbl_name VARCHAR(100); 			rec_state INTEGER; 			rs INTEGER; 		BEGIN 			time_mark = now()+'0 second'::interval; 			tbl_name = 'course_exercise_soal'; 			pk_d_old = '<id_soal>'||OLD."id_soal"||'</id_soal>'; 			pk_d = '<id_soal>'||NEW."id_soal"||'</id_soal>'; 			rec_state = 2; 			rs = 0; 			SELECT record_state INTO rs FROM "public"."history_store" WHERE table_name = tbl_name AND pk_date_src = pk_d_old; 			IF ((rs ISNULL) OR (rs = 0)) THEN 				INSERT INTO "public"."history_store"(timemark, table_name, pk_date_src, pk_date_dest, record_state)  					VALUES (time_mark, tbl_name, pk_d, pk_d_old, rec_state); 			ELSE 				UPDATE "public"."history_store" SET timemark = time_mark, pk_date_src = pk_d WHERE table_name = tbl_name AND pk_date_src = pk_d_old; 			END IF; 			RETURN NEW; 		END; 		$$;
+
+
+--
+-- Name: a_u_course_f(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.a_u_course_f() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$ 		DECLARE 			time_mark TIMESTAMP; 			pk_d_old VARCHAR(400); 			pk_d VARCHAR(400); 			tbl_name VARCHAR(100); 			rec_state INTEGER; 			rs INTEGER; 		BEGIN 			time_mark = now()+'0 second'::interval; 			tbl_name = 'course'; 			pk_d_old = '<id_course>'||OLD."id_course"||'</id_course>'; 			pk_d = '<id_course>'||NEW."id_course"||'</id_course>'; 			rec_state = 2; 			rs = 0; 			SELECT record_state INTO rs FROM "public"."history_store" WHERE table_name = tbl_name AND pk_date_src = pk_d_old; 			IF ((rs ISNULL) OR (rs = 0)) THEN 				INSERT INTO "public"."history_store"(timemark, table_name, pk_date_src, pk_date_dest, record_state)  					VALUES (time_mark, tbl_name, pk_d, pk_d_old, rec_state); 			ELSE 				UPDATE "public"."history_store" SET timemark = time_mark, pk_date_src = pk_d WHERE table_name = tbl_name AND pk_date_src = pk_d_old; 			END IF; 			RETURN NEW; 		END; 		$$;
+
+
+--
+-- Name: a_u_course_materi_f(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.a_u_course_materi_f() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$ 		DECLARE 			time_mark TIMESTAMP; 			pk_d_old VARCHAR(400); 			pk_d VARCHAR(400); 			tbl_name VARCHAR(100); 			rec_state INTEGER; 			rs INTEGER; 		BEGIN 			time_mark = now()+'0 second'::interval; 			tbl_name = 'course_materi'; 			pk_d_old = '<id_materi>'||OLD."id_materi"||'</id_materi>'; 			pk_d = '<id_materi>'||NEW."id_materi"||'</id_materi>'; 			rec_state = 2; 			rs = 0; 			SELECT record_state INTO rs FROM "public"."history_store" WHERE table_name = tbl_name AND pk_date_src = pk_d_old; 			IF ((rs ISNULL) OR (rs = 0)) THEN 				INSERT INTO "public"."history_store"(timemark, table_name, pk_date_src, pk_date_dest, record_state)  					VALUES (time_mark, tbl_name, pk_d, pk_d_old, rec_state); 			ELSE 				UPDATE "public"."history_store" SET timemark = time_mark, pk_date_src = pk_d WHERE table_name = tbl_name AND pk_date_src = pk_d_old; 			END IF; 			RETURN NEW; 		END; 		$$;
+
+
+--
+-- Name: a_u_joint_exercise_f(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.a_u_joint_exercise_f() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$ 		DECLARE 			time_mark TIMESTAMP; 			pk_d_old VARCHAR(400); 			pk_d VARCHAR(400); 			tbl_name VARCHAR(100); 			rec_state INTEGER; 			rs INTEGER; 		BEGIN 			time_mark = now()+'0 second'::interval; 			tbl_name = 'joint_exercise'; 			pk_d_old = '<id_joint_exercise>'||OLD."id_joint_exercise"||'</id_joint_exercise>'; 			pk_d = '<id_joint_exercise>'||NEW."id_joint_exercise"||'</id_joint_exercise>'; 			rec_state = 2; 			rs = 0; 			SELECT record_state INTO rs FROM "public"."history_store" WHERE table_name = tbl_name AND pk_date_src = pk_d_old; 			IF ((rs ISNULL) OR (rs = 0)) THEN 				INSERT INTO "public"."history_store"(timemark, table_name, pk_date_src, pk_date_dest, record_state)  					VALUES (time_mark, tbl_name, pk_d, pk_d_old, rec_state); 			ELSE 				UPDATE "public"."history_store" SET timemark = time_mark, pk_date_src = pk_d WHERE table_name = tbl_name AND pk_date_src = pk_d_old; 			END IF; 			RETURN NEW; 		END; 		$$;
+
+
+--
+-- Name: a_u_joint_materi_f(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.a_u_joint_materi_f() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$ 		DECLARE 			time_mark TIMESTAMP; 			pk_d_old VARCHAR(400); 			pk_d VARCHAR(400); 			tbl_name VARCHAR(100); 			rec_state INTEGER; 			rs INTEGER; 		BEGIN 			time_mark = now()+'0 second'::interval; 			tbl_name = 'joint_materi'; 			pk_d_old = '<id_joint_materi>'||OLD."id_joint_materi"||'</id_joint_materi>'; 			pk_d = '<id_joint_materi>'||NEW."id_joint_materi"||'</id_joint_materi>'; 			rec_state = 2; 			rs = 0; 			SELECT record_state INTO rs FROM "public"."history_store" WHERE table_name = tbl_name AND pk_date_src = pk_d_old; 			IF ((rs ISNULL) OR (rs = 0)) THEN 				INSERT INTO "public"."history_store"(timemark, table_name, pk_date_src, pk_date_dest, record_state)  					VALUES (time_mark, tbl_name, pk_d, pk_d_old, rec_state); 			ELSE 				UPDATE "public"."history_store" SET timemark = time_mark, pk_date_src = pk_d WHERE table_name = tbl_name AND pk_date_src = pk_d_old; 			END IF; 			RETURN NEW; 		END; 		$$;
+
+
+--
+-- Name: a_u_joint_siswa_badges_f(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.a_u_joint_siswa_badges_f() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$ 		DECLARE 			time_mark TIMESTAMP; 			pk_d_old VARCHAR(400); 			pk_d VARCHAR(400); 			tbl_name VARCHAR(100); 			rec_state INTEGER; 			rs INTEGER; 		BEGIN 			time_mark = now()+'0 second'::interval; 			tbl_name = 'joint_siswa_badges'; 			pk_d_old = '<id_joint_badges>'||OLD."id_joint_badges"||'</id_joint_badges>'; 			pk_d = '<id_joint_badges>'||NEW."id_joint_badges"||'</id_joint_badges>'; 			rec_state = 2; 			rs = 0; 			SELECT record_state INTO rs FROM "public"."history_store" WHERE table_name = tbl_name AND pk_date_src = pk_d_old; 			IF ((rs ISNULL) OR (rs = 0)) THEN 				INSERT INTO "public"."history_store"(timemark, table_name, pk_date_src, pk_date_dest, record_state)  					VALUES (time_mark, tbl_name, pk_d, pk_d_old, rec_state); 			ELSE 				UPDATE "public"."history_store" SET timemark = time_mark, pk_date_src = pk_d WHERE table_name = tbl_name AND pk_date_src = pk_d_old; 			END IF; 			RETURN NEW; 		END; 		$$;
+
+
+--
+-- Name: a_u_joint_siswa_course_f(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.a_u_joint_siswa_course_f() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$ 		DECLARE 			time_mark TIMESTAMP; 			pk_d_old VARCHAR(400); 			pk_d VARCHAR(400); 			tbl_name VARCHAR(100); 			rec_state INTEGER; 			rs INTEGER; 		BEGIN 			time_mark = now()+'0 second'::interval; 			tbl_name = 'joint_siswa_course'; 			pk_d_old = '<id_joint_course>'||OLD."id_joint_course"||'</id_joint_course>'; 			pk_d = '<id_joint_course>'||NEW."id_joint_course"||'</id_joint_course>'; 			rec_state = 2; 			rs = 0; 			SELECT record_state INTO rs FROM "public"."history_store" WHERE table_name = tbl_name AND pk_date_src = pk_d_old; 			IF ((rs ISNULL) OR (rs = 0)) THEN 				INSERT INTO "public"."history_store"(timemark, table_name, pk_date_src, pk_date_dest, record_state)  					VALUES (time_mark, tbl_name, pk_d, pk_d_old, rec_state); 			ELSE 				UPDATE "public"."history_store" SET timemark = time_mark, pk_date_src = pk_d WHERE table_name = tbl_name AND pk_date_src = pk_d_old; 			END IF; 			RETURN NEW; 		END; 		$$;
+
+
+--
+-- Name: a_u_profil_guru_f(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.a_u_profil_guru_f() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$ 		DECLARE 			time_mark TIMESTAMP; 			pk_d_old VARCHAR(400); 			pk_d VARCHAR(400); 			tbl_name VARCHAR(100); 			rec_state INTEGER; 			rs INTEGER; 		BEGIN 			time_mark = now()+'0 second'::interval; 			tbl_name = 'profil_guru'; 			pk_d_old = '<id_profil_guru>'||OLD."id_profil_guru"||'</id_profil_guru>'; 			pk_d = '<id_profil_guru>'||NEW."id_profil_guru"||'</id_profil_guru>'; 			rec_state = 2; 			rs = 0; 			SELECT record_state INTO rs FROM "public"."history_store" WHERE table_name = tbl_name AND pk_date_src = pk_d_old; 			IF ((rs ISNULL) OR (rs = 0)) THEN 				INSERT INTO "public"."history_store"(timemark, table_name, pk_date_src, pk_date_dest, record_state)  					VALUES (time_mark, tbl_name, pk_d, pk_d_old, rec_state); 			ELSE 				UPDATE "public"."history_store" SET timemark = time_mark, pk_date_src = pk_d WHERE table_name = tbl_name AND pk_date_src = pk_d_old; 			END IF; 			RETURN NEW; 		END; 		$$;
+
+
+--
+-- Name: a_u_profil_siswa_f(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.a_u_profil_siswa_f() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$ 		DECLARE 			time_mark TIMESTAMP; 			pk_d_old VARCHAR(400); 			pk_d VARCHAR(400); 			tbl_name VARCHAR(100); 			rec_state INTEGER; 			rs INTEGER; 		BEGIN 			time_mark = now()+'0 second'::interval; 			tbl_name = 'profil_siswa'; 			pk_d_old = '<id_profil_siswa>'||OLD."id_profil_siswa"||'</id_profil_siswa>'; 			pk_d = '<id_profil_siswa>'||NEW."id_profil_siswa"||'</id_profil_siswa>'; 			rec_state = 2; 			rs = 0; 			SELECT record_state INTO rs FROM "public"."history_store" WHERE table_name = tbl_name AND pk_date_src = pk_d_old; 			IF ((rs ISNULL) OR (rs = 0)) THEN 				INSERT INTO "public"."history_store"(timemark, table_name, pk_date_src, pk_date_dest, record_state)  					VALUES (time_mark, tbl_name, pk_d, pk_d_old, rec_state); 			ELSE 				UPDATE "public"."history_store" SET timemark = time_mark, pk_date_src = pk_d WHERE table_name = tbl_name AND pk_date_src = pk_d_old; 			END IF; 			RETURN NEW; 		END; 		$$;
+
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- Name: akun; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.akun (
+    id_akun integer NOT NULL,
+    username character varying(255) NOT NULL,
+    password character varying(255) NOT NULL,
+    role character varying(20) NOT NULL,
+    "isNew" character varying(5) NOT NULL
+);
+
+
+--
+-- Name: akun_id_akun_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.akun_id_akun_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: akun_id_akun_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.akun_id_akun_seq OWNED BY public.akun.id_akun;
+
+
+--
+-- Name: akun_id_akun_seq1; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+ALTER TABLE public.akun ALTER COLUMN id_akun ADD GENERATED ALWAYS AS IDENTITY (
+    SEQUENCE NAME public.akun_id_akun_seq1
+    START WITH 2
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1
+);
+
+
+--
+-- Name: badges; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.badges (
+    id_badges integer NOT NULL,
+    nama_badges character varying(255) NOT NULL,
+    deskripsi_badges character varying(255) NOT NULL,
+    point_badges integer NOT NULL,
+    materi_count integer NOT NULL,
+    soal_count integer NOT NULL
+);
+
+
+--
+-- Name: badges_id_badges_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.badges_id_badges_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: badges_id_badges_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.badges_id_badges_seq OWNED BY public.badges.id_badges;
+
+
+--
+-- Name: badges_id_badges_seq1; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+ALTER TABLE public.badges ALTER COLUMN id_badges ADD GENERATED ALWAYS AS IDENTITY (
+    SEQUENCE NAME public.badges_id_badges_seq1
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1
+);
+
+
+--
+-- Name: course; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.course (
+    id_course integer NOT NULL,
+    code_course integer NOT NULL,
+    judul_course character varying(255) NOT NULL,
+    deskripsi_course character varying(255) NOT NULL,
+    id_profil_guru integer NOT NULL
+);
+
+
+--
+-- Name: course_exercise; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.course_exercise (
+    id_exercise integer NOT NULL,
+    code_exercise character varying(255) NOT NULL,
+    judul_exercise character varying(255) NOT NULL,
+    id_course integer NOT NULL
+);
+
+
+--
+-- Name: course_exercise_id_exercise_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.course_exercise_id_exercise_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: course_exercise_id_exercise_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.course_exercise_id_exercise_seq OWNED BY public.course_exercise.id_exercise;
+
+
+--
+-- Name: course_exercise_id_exercise_seq1; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+ALTER TABLE public.course_exercise ALTER COLUMN id_exercise ADD GENERATED ALWAYS AS IDENTITY (
+    SEQUENCE NAME public.course_exercise_id_exercise_seq1
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1
+);
+
+
+--
+-- Name: course_exercise_soal; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.course_exercise_soal (
+    id_soal integer NOT NULL,
+    nomor_soal integer NOT NULL,
+    pertanyaan_soal character varying(255) NOT NULL,
+    option_a character varying(255) NOT NULL,
+    option_b character varying(255) NOT NULL,
+    option_c character varying(255) NOT NULL,
+    option_d character varying(255) NOT NULL,
+    option_key character varying(255) NOT NULL,
+    point_soal integer NOT NULL,
+    id_exercise integer NOT NULL
+);
+
+
+--
+-- Name: course_exercise_soal_id_soal_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.course_exercise_soal_id_soal_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: course_exercise_soal_id_soal_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.course_exercise_soal_id_soal_seq OWNED BY public.course_exercise_soal.id_soal;
+
+
+--
+-- Name: course_exercise_soal_id_soal_seq1; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+ALTER TABLE public.course_exercise_soal ALTER COLUMN id_soal ADD GENERATED ALWAYS AS IDENTITY (
+    SEQUENCE NAME public.course_exercise_soal_id_soal_seq1
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1
+);
+
+
+--
+-- Name: course_id_course_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.course_id_course_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: course_id_course_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.course_id_course_seq OWNED BY public.course.id_course;
+
+
+--
+-- Name: course_id_course_seq1; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+ALTER TABLE public.course ALTER COLUMN id_course ADD GENERATED ALWAYS AS IDENTITY (
+    SEQUENCE NAME public.course_id_course_seq1
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1
+);
+
+
+--
+-- Name: course_materi; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.course_materi (
+    id_materi integer NOT NULL,
+    judul_materi character varying(255) NOT NULL,
+    isi_materi text NOT NULL,
+    point_materi integer NOT NULL,
+    id_course integer NOT NULL
+);
+
+
+--
+-- Name: course_materi_id_materi_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.course_materi_id_materi_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: course_materi_id_materi_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.course_materi_id_materi_seq OWNED BY public.course_materi.id_materi;
+
+
+--
+-- Name: course_materi_id_materi_seq1; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+ALTER TABLE public.course_materi ALTER COLUMN id_materi ADD GENERATED ALWAYS AS IDENTITY (
+    SEQUENCE NAME public.course_materi_id_materi_seq1
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1
+);
+
+
+--
+-- Name: history_store; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.history_store (
+    timemark timestamp without time zone NOT NULL,
+    table_name character varying(50) NOT NULL,
+    pk_date_src character varying(400) NOT NULL,
+    pk_date_dest character varying(400) NOT NULL,
+    record_state smallint NOT NULL
+);
+
+
+--
+-- Name: joint_exercise; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.joint_exercise (
+    id_joint_exercise integer NOT NULL,
+    id_profil_siswa integer NOT NULL,
+    id_exercise integer NOT NULL,
+    "isFinished" character varying(5) NOT NULL
+);
+
+
+--
+-- Name: joint_exercise_id_joint_exercise_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.joint_exercise_id_joint_exercise_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: joint_exercise_id_joint_exercise_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.joint_exercise_id_joint_exercise_seq OWNED BY public.joint_exercise.id_joint_exercise;
+
+
+--
+-- Name: joint_exercise_id_joint_exercise_seq1; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+ALTER TABLE public.joint_exercise ALTER COLUMN id_joint_exercise ADD GENERATED ALWAYS AS IDENTITY (
+    SEQUENCE NAME public.joint_exercise_id_joint_exercise_seq1
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1
+);
+
+
+--
+-- Name: joint_materi; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.joint_materi (
+    id_joint_materi integer NOT NULL,
+    id_profil_siswa integer NOT NULL,
+    id_materi integer NOT NULL,
+    "isFinished" character varying(5) NOT NULL
+);
+
+
+--
+-- Name: joint_materi_id_joint_materi_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.joint_materi_id_joint_materi_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: joint_materi_id_joint_materi_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.joint_materi_id_joint_materi_seq OWNED BY public.joint_materi.id_joint_materi;
+
+
+--
+-- Name: joint_materi_id_joint_materi_seq1; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+ALTER TABLE public.joint_materi ALTER COLUMN id_joint_materi ADD GENERATED ALWAYS AS IDENTITY (
+    SEQUENCE NAME public.joint_materi_id_joint_materi_seq1
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1
+);
+
+
+--
+-- Name: joint_siswa_badges; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.joint_siswa_badges (
+    id_joint_badges integer NOT NULL,
+    id_profil_siswa integer NOT NULL,
+    id_badges integer NOT NULL
+);
+
+
+--
+-- Name: joint_siswa_badges_id_joint_badges_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.joint_siswa_badges_id_joint_badges_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: joint_siswa_badges_id_joint_badges_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.joint_siswa_badges_id_joint_badges_seq OWNED BY public.joint_siswa_badges.id_joint_badges;
+
+
+--
+-- Name: joint_siswa_badges_id_joint_badges_seq1; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+ALTER TABLE public.joint_siswa_badges ALTER COLUMN id_joint_badges ADD GENERATED ALWAYS AS IDENTITY (
+    SEQUENCE NAME public.joint_siswa_badges_id_joint_badges_seq1
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1
+);
+
+
+--
+-- Name: joint_siswa_course; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.joint_siswa_course (
+    id_joint_course integer NOT NULL,
+    id_profil_siswa integer NOT NULL,
+    id_course integer NOT NULL,
+    "isJoined" character varying(5) NOT NULL
+);
+
+
+--
+-- Name: joint_siswa_course_id_joint_course_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.joint_siswa_course_id_joint_course_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: joint_siswa_course_id_joint_course_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.joint_siswa_course_id_joint_course_seq OWNED BY public.joint_siswa_course.id_joint_course;
+
+
+--
+-- Name: joint_siswa_course_id_joint_course_seq1; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+ALTER TABLE public.joint_siswa_course ALTER COLUMN id_joint_course ADD GENERATED ALWAYS AS IDENTITY (
+    SEQUENCE NAME public.joint_siswa_course_id_joint_course_seq1
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1
+);
+
+
+--
+-- Name: profil_guru; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.profil_guru (
+    id_profil_guru integer NOT NULL,
+    nip character varying(255) NOT NULL,
+    nama_guru character varying(255) NOT NULL,
+    id_akun integer NOT NULL
+);
+
+
+--
+-- Name: profil_guru_id_profil_guru_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.profil_guru_id_profil_guru_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: profil_guru_id_profil_guru_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.profil_guru_id_profil_guru_seq OWNED BY public.profil_guru.id_profil_guru;
+
+
+--
+-- Name: profil_guru_id_profil_guru_seq1; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+ALTER TABLE public.profil_guru ALTER COLUMN id_profil_guru ADD GENERATED ALWAYS AS IDENTITY (
+    SEQUENCE NAME public.profil_guru_id_profil_guru_seq1
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1
+);
+
+
+--
+-- Name: profil_siswa; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.profil_siswa (
+    id_profil_siswa integer NOT NULL,
+    nama_siswa character varying(255) NOT NULL,
+    level_siswa integer NOT NULL,
+    point_siswa integer NOT NULL,
+    materi_finished integer NOT NULL,
+    exercise_finished integer NOT NULL,
+    id_akun integer NOT NULL
+);
+
+
+--
+-- Name: profil_siswa_id_profil_siswa_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.profil_siswa_id_profil_siswa_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: profil_siswa_id_profil_siswa_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.profil_siswa_id_profil_siswa_seq OWNED BY public.profil_siswa.id_profil_siswa;
+
+
+--
+-- Name: profil_siswa_id_profil_siswa_seq1; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+ALTER TABLE public.profil_siswa ALTER COLUMN id_profil_siswa ADD GENERATED ALWAYS AS IDENTITY (
+    SEQUENCE NAME public.profil_siswa_id_profil_siswa_seq1
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1
+);
+
+
+--
+-- Data for Name: akun; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.akun (id_akun, username, password, role, "isNew") FROM stdin;
+1	admin	$2b$10$Q7cotU9AgnArC3iVWE6gEubpjmpuB.emfRfp5hhNihiD/kjDg.MLi	admin	no
+21	della	$2b$10$FdIloCwc3XcfWwm9Z8rnn.PxF4HMjiLoCmuUOE20uoqAwkh4J3XJu	guru	no
+34	siswa	$2b$10$ZGDPOga3PK4HERL7feztMOLeE.ZkHbyt6MeNXwybOtOZ3F3NFTLA.	siswa	no
+35	guruku	$2b$10$UjR/lD1sRhYR90uxmAp4ceWEGRRsDm5R8jc984ViHmQp/S610TPxq	guru	no
+2	gurukuz	$2b$10$M/gKtytpytwF2mx1P5BYSOXcCDbVUFoqaZFVOGbCGZxkIz51IxMWK	guru	yes
+4	asd	$2b$10$55l1dK/8EHGON66dwAQ.bOKpKR83ThHBC0yegDLFO/hYgCfKM.o2.	guru	yes
+5	nhuj	$2b$10$TKt/Gu/SDtb6Ga5pdH2XQO2deDIzmR3mZ3fKxxntbo4bf2qS26Ho.	siswa	yes
+\.
+
+
+--
+-- Data for Name: badges; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.badges (id_badges, nama_badges, deskripsi_badges, point_badges, materi_count, soal_count) FROM stdin;
+1	Party Starter	Melengkapi akun profil	-1	-1	-1
+2	Materi Beginner	Berhasil memahami 1 materi	-1	1	-1
+3	Rookie is in the house	Berhasil naik ke level 2	200	-1	-1
+4	Materi Brace	Berhasil memahami 2 materi	-1	2	-1
+5	Rookie's Runner	Berhasil naik ke level 3	300	-1	-1
+7	Exercise Starter	Menyelesaikan 1 exercise	-1	-1	1
+8	Exercise Twice	Menyelesaikan 2 Exercise	-1	-1	2
+9	Exercise Thrice	Menyelesaikan 3 Exercise	-1	-1	3
+10	Four for Four	Berhasil naik ke level 4	400	-1	-1
+11	From Rookie to Five Stars	Berhasil naik ke level 5	500	-1	-1
+12	Material Trivial	Menyelesaikan 3 materi	-1	3	-1
+13	Materiale Quadruple	Menyelesaikan 4 Materi	-1	4	-1
+14	Exercise Quarterary	Menyelesaikan 4 Exercise	-1	-1	4
+15	Exercise Feevers	Menyelesaikan 5 Exercise	-1	-1	5
+16	Material Feevers	Menyelesaikan 5 Materi	-1	5	-1
+17	Hexadix Six	Berhasil mencapai level 6	600	-1	-1
+18	Exercise Sixtuple	Menyelesaikan 6 Exercise	-1	-1	6
+19	Materiale Sixtuple	Menyelesaikan 6 Materi	-1	6	-1
+\.
+
+
+--
+-- Data for Name: course; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.course (id_course, code_course, judul_course, deskripsi_course, id_profil_guru) FROM stdin;
+8	4011231	HTML Dasar	Course untuk mempelajari HTML	9
+9	64865	HTML gan	HTML AJAH SIH	9
+10	28533	kursus masak	masak ikan cupang	9
+1	32579	juju	juju	9
+2	79030	yyy	yyy	9
+\.
+
+
+--
+-- Data for Name: course_exercise; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.course_exercise (id_exercise, code_exercise, judul_exercise, id_course) FROM stdin;
+25	31786	ngusep	8
+27	91194	ngusepe	8
+29	12438	dddd	8
+30	32277	youtbe	9
+\.
+
+
+--
+-- Data for Name: course_exercise_soal; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.course_exercise_soal (id_soal, nomor_soal, pertanyaan_soal, option_a, option_b, option_c, option_d, option_key, point_soal, id_exercise) FROM stdin;
+14	1	siapa kamu	ujang	ichsan	mevran	kisno	option_b	100	27
+15	1	siapa kamu	maguayer	krisno	porginho	pessi	option_a	50	30
+16	2	siapa kamu	maguayer	krisno	porginho	pessi	option_d	50	27
+\.
+
+
+--
+-- Data for Name: course_materi; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.course_materi (id_materi, judul_materi, isi_materi, point_materi, id_course) FROM stdin;
+8	Basic HTML Tag	<h1>hello world</h1>	50	8
+9	kucing beranak	<p>Kucing bisa punya anak lebih dari 1</p>\n<p>berikut nama nama kucing</p>\n<p>-cibet</p>\n<p>-ridin</p>\n<p>-geulis</p>\n<p>-bocil</p>\n<p>-oren</p>	50	8
+10	sdfsdfs	<p><strong>sdfsdfsdf</strong></p>\n<p>&nbsp;</p>\n<p><strong>asdasdasdasd</strong></p>\n<p><strong>asdasdasdasd</strong></p>\n<p><strong>eeeeeeee</strong></p>\n<p>&nbsp;</p>\n<p><em><strong>asddasdasd</strong></em></p>	100	8
+12	sdfsdfs31	<h1>asdasd<strong>asdasdasd</strong></h1><p>manusia hina</p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><ol><li>ubiw</li></ol>	100	8
+1	asdasd10		50	8
+\.
+
+
+--
+-- Data for Name: history_store; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.history_store (timemark, table_name, pk_date_src, pk_date_dest, record_state) FROM stdin;
+2022-05-24 13:14:28.34502	akun	<id_akun>2</id_akun>	<id_akun>2</id_akun>	1
+2022-05-24 13:14:43.485976	akun	<id_akun>4</id_akun>	<id_akun>4</id_akun>	1
+2022-05-24 13:18:36.12394	course_materi	<id_materi>1</id_materi>	<id_materi>1</id_materi>	1
+2022-05-24 13:18:46.33298	akun	<id_akun>5</id_akun>	<id_akun>5</id_akun>	1
+2022-05-24 13:18:52.981528	course	<id_course>1</id_course>	<id_course>1</id_course>	1
+2022-05-24 14:01:19.480175	course	<id_course>2</id_course>	<id_course>2</id_course>	1
+\.
+
+
+--
+-- Data for Name: joint_exercise; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.joint_exercise (id_joint_exercise, id_profil_siswa, id_exercise, "isFinished") FROM stdin;
+12	45	27	true
+13	45	25	false
+14	45	27	true
+15	45	29	false
+\.
+
+
+--
+-- Data for Name: joint_materi; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.joint_materi (id_joint_materi, id_profil_siswa, id_materi, "isFinished") FROM stdin;
+48	45	8	true
+49	45	9	true
+50	45	10	true
+51	45	12	false
+\.
+
+
+--
+-- Data for Name: joint_siswa_badges; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.joint_siswa_badges (id_joint_badges, id_profil_siswa, id_badges) FROM stdin;
+24	45	1
+63	45	2
+64	45	3
+65	45	4
+66	45	5
+67	45	12
+68	45	7
+69	45	10
+\.
+
+
+--
+-- Data for Name: joint_siswa_course; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.joint_siswa_course (id_joint_course, id_profil_siswa, id_course, "isJoined") FROM stdin;
+14	45	8	true
+\.
+
+
+--
+-- Data for Name: profil_guru; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.profil_guru (id_profil_guru, nip, nama_guru, id_akun) FROM stdin;
+9	1805420	della	21
+17	123454	Bujang	35
+\.
+
+
+--
+-- Data for Name: profil_siswa; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.profil_siswa (id_profil_siswa, nama_siswa, level_siswa, point_siswa, materi_finished, exercise_finished, id_akun) FROM stdin;
+45	SAFRON	4	400	3	1	34
+\.
+
+
+--
+-- Name: akun_id_akun_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.akun_id_akun_seq', 1, true);
+
+
+--
+-- Name: akun_id_akun_seq1; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.akun_id_akun_seq1', 5, true);
+
+
+--
+-- Name: badges_id_badges_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.badges_id_badges_seq', 1, false);
+
+
+--
+-- Name: badges_id_badges_seq1; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.badges_id_badges_seq1', 1, false);
+
+
+--
+-- Name: course_exercise_id_exercise_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.course_exercise_id_exercise_seq', 1, false);
+
+
+--
+-- Name: course_exercise_id_exercise_seq1; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.course_exercise_id_exercise_seq1', 1, false);
+
+
+--
+-- Name: course_exercise_soal_id_soal_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.course_exercise_soal_id_soal_seq', 1, false);
+
+
+--
+-- Name: course_exercise_soal_id_soal_seq1; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.course_exercise_soal_id_soal_seq1', 1, false);
+
+
+--
+-- Name: course_id_course_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.course_id_course_seq', 1, false);
+
+
+--
+-- Name: course_id_course_seq1; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.course_id_course_seq1', 2, true);
+
+
+--
+-- Name: course_materi_id_materi_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.course_materi_id_materi_seq', 1, false);
+
+
+--
+-- Name: course_materi_id_materi_seq1; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.course_materi_id_materi_seq1', 1, true);
+
+
+--
+-- Name: joint_exercise_id_joint_exercise_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.joint_exercise_id_joint_exercise_seq', 1, false);
+
+
+--
+-- Name: joint_exercise_id_joint_exercise_seq1; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.joint_exercise_id_joint_exercise_seq1', 1, false);
+
+
+--
+-- Name: joint_materi_id_joint_materi_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.joint_materi_id_joint_materi_seq', 1, false);
+
+
+--
+-- Name: joint_materi_id_joint_materi_seq1; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.joint_materi_id_joint_materi_seq1', 1, false);
+
+
+--
+-- Name: joint_siswa_badges_id_joint_badges_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.joint_siswa_badges_id_joint_badges_seq', 1, false);
+
+
+--
+-- Name: joint_siswa_badges_id_joint_badges_seq1; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.joint_siswa_badges_id_joint_badges_seq1', 1, false);
+
+
+--
+-- Name: joint_siswa_course_id_joint_course_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.joint_siswa_course_id_joint_course_seq', 1, false);
+
+
+--
+-- Name: joint_siswa_course_id_joint_course_seq1; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.joint_siswa_course_id_joint_course_seq1', 1, false);
+
+
+--
+-- Name: profil_guru_id_profil_guru_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.profil_guru_id_profil_guru_seq', 1, false);
+
+
+--
+-- Name: profil_guru_id_profil_guru_seq1; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.profil_guru_id_profil_guru_seq1', 1, false);
+
+
+--
+-- Name: profil_siswa_id_profil_siswa_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.profil_siswa_id_profil_siswa_seq', 1, false);
+
+
+--
+-- Name: profil_siswa_id_profil_siswa_seq1; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.profil_siswa_id_profil_siswa_seq1', 1, false);
+
+
+--
+-- Name: akun akun_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.akun
+    ADD CONSTRAINT akun_pkey PRIMARY KEY (id_akun);
+
+
+--
+-- Name: akun akun_username_key; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.akun
+    ADD CONSTRAINT akun_username_key UNIQUE (username);
+
+
+--
+-- Name: akun akun_username_key1; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.akun
+    ADD CONSTRAINT akun_username_key1 UNIQUE (username);
+
+
+--
+-- Name: badges badges_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.badges
+    ADD CONSTRAINT badges_pkey PRIMARY KEY (id_badges);
+
+
+--
+-- Name: course course_code_course_key; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.course
+    ADD CONSTRAINT course_code_course_key UNIQUE (code_course);
+
+
+--
+-- Name: course course_code_course_key1; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.course
+    ADD CONSTRAINT course_code_course_key1 UNIQUE (code_course);
+
+
+--
+-- Name: course_exercise course_exercise_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.course_exercise
+    ADD CONSTRAINT course_exercise_pkey PRIMARY KEY (id_exercise);
+
+
+--
+-- Name: course_exercise_soal course_exercise_soal_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.course_exercise_soal
+    ADD CONSTRAINT course_exercise_soal_pkey PRIMARY KEY (id_soal);
+
+
+--
+-- Name: course_materi course_materi_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.course_materi
+    ADD CONSTRAINT course_materi_pkey PRIMARY KEY (id_materi);
+
+
+--
+-- Name: course course_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.course
+    ADD CONSTRAINT course_pkey PRIMARY KEY (id_course);
+
+
+--
+-- Name: history_store history_store_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.history_store
+    ADD CONSTRAINT history_store_pkey PRIMARY KEY (table_name, pk_date_dest);
+
+
+--
+-- Name: joint_exercise joint_exercise_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.joint_exercise
+    ADD CONSTRAINT joint_exercise_pkey PRIMARY KEY (id_joint_exercise);
+
+
+--
+-- Name: joint_materi joint_materi_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.joint_materi
+    ADD CONSTRAINT joint_materi_pkey PRIMARY KEY (id_joint_materi);
+
+
+--
+-- Name: joint_siswa_badges joint_siswa_badges_id_badges_key; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.joint_siswa_badges
+    ADD CONSTRAINT joint_siswa_badges_id_badges_key UNIQUE (id_badges);
+
+
+--
+-- Name: joint_siswa_badges joint_siswa_badges_id_badges_key1; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.joint_siswa_badges
+    ADD CONSTRAINT joint_siswa_badges_id_badges_key1 UNIQUE (id_badges);
+
+
+--
+-- Name: joint_siswa_badges joint_siswa_badges_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.joint_siswa_badges
+    ADD CONSTRAINT joint_siswa_badges_pkey PRIMARY KEY (id_joint_badges);
+
+
+--
+-- Name: joint_siswa_course joint_siswa_course_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.joint_siswa_course
+    ADD CONSTRAINT joint_siswa_course_pkey PRIMARY KEY (id_joint_course);
+
+
+--
+-- Name: profil_guru profil_guru_id_akun_key; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.profil_guru
+    ADD CONSTRAINT profil_guru_id_akun_key UNIQUE (id_akun);
+
+
+--
+-- Name: profil_guru profil_guru_id_akun_key1; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.profil_guru
+    ADD CONSTRAINT profil_guru_id_akun_key1 UNIQUE (id_akun);
+
+
+--
+-- Name: profil_guru profil_guru_nip_key; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.profil_guru
+    ADD CONSTRAINT profil_guru_nip_key UNIQUE (nip);
+
+
+--
+-- Name: profil_guru profil_guru_nip_key1; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.profil_guru
+    ADD CONSTRAINT profil_guru_nip_key1 UNIQUE (nip);
+
+
+--
+-- Name: profil_guru profil_guru_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.profil_guru
+    ADD CONSTRAINT profil_guru_pkey PRIMARY KEY (id_profil_guru);
+
+
+--
+-- Name: profil_siswa profil_siswa_id_akun_key; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.profil_siswa
+    ADD CONSTRAINT profil_siswa_id_akun_key UNIQUE (id_akun);
+
+
+--
+-- Name: profil_siswa profil_siswa_id_akun_key1; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.profil_siswa
+    ADD CONSTRAINT profil_siswa_id_akun_key1 UNIQUE (id_akun);
+
+
+--
+-- Name: profil_siswa profil_siswa_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.profil_siswa
+    ADD CONSTRAINT profil_siswa_pkey PRIMARY KEY (id_profil_siswa);
+
+
+--
+-- Name: id_akun; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX id_akun ON public.profil_guru USING btree (id_akun);
+
+
+--
+-- Name: id_badges; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX id_badges ON public.joint_siswa_badges USING btree (id_badges);
+
+
+--
+-- Name: id_course; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX id_course ON public.course_materi USING btree (id_course);
+
+
+--
+-- Name: id_course_index; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX id_course_index ON public.course_exercise USING btree (id_course);
+
+
+--
+-- Name: id_exercise; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX id_exercise ON public.joint_exercise USING btree (id_exercise);
+
+
+--
+-- Name: id_exercise_index; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX id_exercise_index ON public.course_exercise_soal USING btree (id_exercise);
+
+
+--
+-- Name: id_materi; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX id_materi ON public.joint_materi USING btree (id_materi);
+
+
+--
+-- Name: id_profil_guru; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX id_profil_guru ON public.course USING btree (id_profil_guru);
+
+
+--
+-- Name: id_profil_siswa; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX id_profil_siswa ON public.joint_siswa_course USING btree (id_profil_siswa);
+
+
+--
+-- Name: id_profil_siswa_index; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX id_profil_siswa_index ON public.joint_exercise USING btree (id_profil_siswa);
+
+
+--
+-- Name: id_profil_siswa_index_2; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX id_profil_siswa_index_2 ON public.joint_materi USING btree (id_profil_siswa);
+
+
+--
+-- Name: id_profil_siswa_index_3; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX id_profil_siswa_index_3 ON public.joint_siswa_badges USING btree (id_profil_siswa);
+
+
+--
+-- Name: akun a_d_akun; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE TRIGGER a_d_akun AFTER DELETE ON public.akun FOR EACH ROW EXECUTE FUNCTION public.a_d_akun_f();
+
+
+--
+-- Name: badges a_d_badges; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE TRIGGER a_d_badges AFTER DELETE ON public.badges FOR EACH ROW EXECUTE FUNCTION public.a_d_badges_f();
+
+
+--
+-- Name: course a_d_course; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE TRIGGER a_d_course AFTER DELETE ON public.course FOR EACH ROW EXECUTE FUNCTION public.a_d_course_f();
+
+
+--
+-- Name: course_exercise a_d_course_exercise; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE TRIGGER a_d_course_exercise AFTER DELETE ON public.course_exercise FOR EACH ROW EXECUTE FUNCTION public.a_d_course_exercise_f();
+
+
+--
+-- Name: course_exercise_soal a_d_course_exercise_soal; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE TRIGGER a_d_course_exercise_soal AFTER DELETE ON public.course_exercise_soal FOR EACH ROW EXECUTE FUNCTION public.a_d_course_exercise_soal_f();
+
+
+--
+-- Name: course_materi a_d_course_materi; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE TRIGGER a_d_course_materi AFTER DELETE ON public.course_materi FOR EACH ROW EXECUTE FUNCTION public.a_d_course_materi_f();
+
+
+--
+-- Name: joint_exercise a_d_joint_exercise; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE TRIGGER a_d_joint_exercise AFTER DELETE ON public.joint_exercise FOR EACH ROW EXECUTE FUNCTION public.a_d_joint_exercise_f();
+
+
+--
+-- Name: joint_materi a_d_joint_materi; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE TRIGGER a_d_joint_materi AFTER DELETE ON public.joint_materi FOR EACH ROW EXECUTE FUNCTION public.a_d_joint_materi_f();
+
+
+--
+-- Name: joint_siswa_badges a_d_joint_siswa_badges; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE TRIGGER a_d_joint_siswa_badges AFTER DELETE ON public.joint_siswa_badges FOR EACH ROW EXECUTE FUNCTION public.a_d_joint_siswa_badges_f();
+
+
+--
+-- Name: joint_siswa_course a_d_joint_siswa_course; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE TRIGGER a_d_joint_siswa_course AFTER DELETE ON public.joint_siswa_course FOR EACH ROW EXECUTE FUNCTION public.a_d_joint_siswa_course_f();
+
+
+--
+-- Name: profil_guru a_d_profil_guru; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE TRIGGER a_d_profil_guru AFTER DELETE ON public.profil_guru FOR EACH ROW EXECUTE FUNCTION public.a_d_profil_guru_f();
+
+
+--
+-- Name: profil_siswa a_d_profil_siswa; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE TRIGGER a_d_profil_siswa AFTER DELETE ON public.profil_siswa FOR EACH ROW EXECUTE FUNCTION public.a_d_profil_siswa_f();
+
+
+--
+-- Name: akun a_i_akun; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE TRIGGER a_i_akun AFTER INSERT ON public.akun FOR EACH ROW EXECUTE FUNCTION public.a_i_akun_f();
+
+
+--
+-- Name: badges a_i_badges; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE TRIGGER a_i_badges AFTER INSERT ON public.badges FOR EACH ROW EXECUTE FUNCTION public.a_i_badges_f();
+
+
+--
+-- Name: course a_i_course; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE TRIGGER a_i_course AFTER INSERT ON public.course FOR EACH ROW EXECUTE FUNCTION public.a_i_course_f();
+
+
+--
+-- Name: course_exercise a_i_course_exercise; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE TRIGGER a_i_course_exercise AFTER INSERT ON public.course_exercise FOR EACH ROW EXECUTE FUNCTION public.a_i_course_exercise_f();
+
+
+--
+-- Name: course_exercise_soal a_i_course_exercise_soal; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE TRIGGER a_i_course_exercise_soal AFTER INSERT ON public.course_exercise_soal FOR EACH ROW EXECUTE FUNCTION public.a_i_course_exercise_soal_f();
+
+
+--
+-- Name: course_materi a_i_course_materi; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE TRIGGER a_i_course_materi AFTER INSERT ON public.course_materi FOR EACH ROW EXECUTE FUNCTION public.a_i_course_materi_f();
+
+
+--
+-- Name: joint_exercise a_i_joint_exercise; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE TRIGGER a_i_joint_exercise AFTER INSERT ON public.joint_exercise FOR EACH ROW EXECUTE FUNCTION public.a_i_joint_exercise_f();
+
+
+--
+-- Name: joint_materi a_i_joint_materi; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE TRIGGER a_i_joint_materi AFTER INSERT ON public.joint_materi FOR EACH ROW EXECUTE FUNCTION public.a_i_joint_materi_f();
+
+
+--
+-- Name: joint_siswa_badges a_i_joint_siswa_badges; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE TRIGGER a_i_joint_siswa_badges AFTER INSERT ON public.joint_siswa_badges FOR EACH ROW EXECUTE FUNCTION public.a_i_joint_siswa_badges_f();
+
+
+--
+-- Name: joint_siswa_course a_i_joint_siswa_course; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE TRIGGER a_i_joint_siswa_course AFTER INSERT ON public.joint_siswa_course FOR EACH ROW EXECUTE FUNCTION public.a_i_joint_siswa_course_f();
+
+
+--
+-- Name: profil_guru a_i_profil_guru; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE TRIGGER a_i_profil_guru AFTER INSERT ON public.profil_guru FOR EACH ROW EXECUTE FUNCTION public.a_i_profil_guru_f();
+
+
+--
+-- Name: profil_siswa a_i_profil_siswa; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE TRIGGER a_i_profil_siswa AFTER INSERT ON public.profil_siswa FOR EACH ROW EXECUTE FUNCTION public.a_i_profil_siswa_f();
+
+
+--
+-- Name: akun a_u_akun; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE TRIGGER a_u_akun AFTER UPDATE ON public.akun FOR EACH ROW EXECUTE FUNCTION public.a_u_akun_f();
+
+
+--
+-- Name: badges a_u_badges; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE TRIGGER a_u_badges AFTER UPDATE ON public.badges FOR EACH ROW EXECUTE FUNCTION public.a_u_badges_f();
+
+
+--
+-- Name: course a_u_course; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE TRIGGER a_u_course AFTER UPDATE ON public.course FOR EACH ROW EXECUTE FUNCTION public.a_u_course_f();
+
+
+--
+-- Name: course_exercise a_u_course_exercise; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE TRIGGER a_u_course_exercise AFTER UPDATE ON public.course_exercise FOR EACH ROW EXECUTE FUNCTION public.a_u_course_exercise_f();
+
+
+--
+-- Name: course_exercise_soal a_u_course_exercise_soal; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE TRIGGER a_u_course_exercise_soal AFTER UPDATE ON public.course_exercise_soal FOR EACH ROW EXECUTE FUNCTION public.a_u_course_exercise_soal_f();
+
+
+--
+-- Name: course_materi a_u_course_materi; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE TRIGGER a_u_course_materi AFTER UPDATE ON public.course_materi FOR EACH ROW EXECUTE FUNCTION public.a_u_course_materi_f();
+
+
+--
+-- Name: joint_exercise a_u_joint_exercise; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE TRIGGER a_u_joint_exercise AFTER UPDATE ON public.joint_exercise FOR EACH ROW EXECUTE FUNCTION public.a_u_joint_exercise_f();
+
+
+--
+-- Name: joint_materi a_u_joint_materi; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE TRIGGER a_u_joint_materi AFTER UPDATE ON public.joint_materi FOR EACH ROW EXECUTE FUNCTION public.a_u_joint_materi_f();
+
+
+--
+-- Name: joint_siswa_badges a_u_joint_siswa_badges; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE TRIGGER a_u_joint_siswa_badges AFTER UPDATE ON public.joint_siswa_badges FOR EACH ROW EXECUTE FUNCTION public.a_u_joint_siswa_badges_f();
+
+
+--
+-- Name: joint_siswa_course a_u_joint_siswa_course; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE TRIGGER a_u_joint_siswa_course AFTER UPDATE ON public.joint_siswa_course FOR EACH ROW EXECUTE FUNCTION public.a_u_joint_siswa_course_f();
+
+
+--
+-- Name: profil_guru a_u_profil_guru; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE TRIGGER a_u_profil_guru AFTER UPDATE ON public.profil_guru FOR EACH ROW EXECUTE FUNCTION public.a_u_profil_guru_f();
+
+
+--
+-- Name: profil_siswa a_u_profil_siswa; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE TRIGGER a_u_profil_siswa AFTER UPDATE ON public.profil_siswa FOR EACH ROW EXECUTE FUNCTION public.a_u_profil_siswa_f();
+
+
+--
+-- Name: course_exercise course_exercise_ibfk_1; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.course_exercise
+    ADD CONSTRAINT course_exercise_ibfk_1 FOREIGN KEY (id_course) REFERENCES public.course(id_course) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: course_exercise_soal course_exercise_soal_ibfk_1; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.course_exercise_soal
+    ADD CONSTRAINT course_exercise_soal_ibfk_1 FOREIGN KEY (id_exercise) REFERENCES public.course_exercise(id_exercise) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: course course_ibfk_1; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.course
+    ADD CONSTRAINT course_ibfk_1 FOREIGN KEY (id_profil_guru) REFERENCES public.profil_guru(id_profil_guru) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: course_materi course_materi_ibfk_1; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.course_materi
+    ADD CONSTRAINT course_materi_ibfk_1 FOREIGN KEY (id_course) REFERENCES public.course(id_course) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: joint_exercise fk_exercise; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.joint_exercise
+    ADD CONSTRAINT fk_exercise FOREIGN KEY (id_exercise) REFERENCES public.course_exercise(id_exercise) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: joint_exercise fk_profil; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.joint_exercise
+    ADD CONSTRAINT fk_profil FOREIGN KEY (id_profil_siswa) REFERENCES public.profil_siswa(id_profil_siswa) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: joint_materi joint_materi_ibfk_1; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.joint_materi
+    ADD CONSTRAINT joint_materi_ibfk_1 FOREIGN KEY (id_profil_siswa) REFERENCES public.profil_siswa(id_profil_siswa) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: joint_materi joint_materi_ibfk_2; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.joint_materi
+    ADD CONSTRAINT joint_materi_ibfk_2 FOREIGN KEY (id_materi) REFERENCES public.course_materi(id_materi) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: joint_siswa_badges joint_siswa_badges_ibfk_1; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.joint_siswa_badges
+    ADD CONSTRAINT joint_siswa_badges_ibfk_1 FOREIGN KEY (id_profil_siswa) REFERENCES public.profil_siswa(id_profil_siswa) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: joint_siswa_badges joint_siswa_badges_ibfk_2; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.joint_siswa_badges
+    ADD CONSTRAINT joint_siswa_badges_ibfk_2 FOREIGN KEY (id_badges) REFERENCES public.badges(id_badges) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: joint_siswa_course joint_siswa_course_ibfk_1; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.joint_siswa_course
+    ADD CONSTRAINT joint_siswa_course_ibfk_1 FOREIGN KEY (id_profil_siswa) REFERENCES public.profil_siswa(id_profil_siswa) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: joint_siswa_course joint_siswa_course_ibfk_2; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.joint_siswa_course
+    ADD CONSTRAINT joint_siswa_course_ibfk_2 FOREIGN KEY (id_course) REFERENCES public.course(id_course) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: profil_guru profil_guru_ibfk_1; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.profil_guru
+    ADD CONSTRAINT profil_guru_ibfk_1 FOREIGN KEY (id_akun) REFERENCES public.akun(id_akun) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: profil_siswa profil_siswa_ibfk_1; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.profil_siswa
+    ADD CONSTRAINT profil_siswa_ibfk_1 FOREIGN KEY (id_akun) REFERENCES public.akun(id_akun) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- PostgreSQL database dump complete
+--
+
