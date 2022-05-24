@@ -8,7 +8,8 @@ const { DataTypes } = Sequelize;
 const ProfilSiswa = db.define('profil_siswa', {
     id_profil_siswa: {
         type: DataTypes.INTEGER,
-        primaryKey: true,
+        autoIncrement: true,
+        primaryKey: true
     },
     nama_siswa: {
         type: DataTypes.STRING

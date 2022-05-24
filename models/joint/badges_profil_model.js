@@ -6,7 +6,8 @@ const { DataTypes } = Sequelize;
 const BadgesProfilJoint = db.define('joint_siswa_badges', {
     id_joint_badges: {
         type: DataTypes.INTEGER,
-        primaryKey: true,
+        autoIncrement: true,
+        primaryKey: true
     }
 }, {
     freezeTableName: true

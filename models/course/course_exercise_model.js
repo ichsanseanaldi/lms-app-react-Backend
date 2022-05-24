@@ -8,6 +8,7 @@ const { DataTypes } = Sequelize;
 const CourseExercise = db.define('course_exercise', {
     id_exercise: {
         type: DataTypes.INTEGER,
+        autoIncrement: true,
         primaryKey: true
     },
     code_exercise: {

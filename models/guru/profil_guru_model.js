@@ -9,6 +9,7 @@ const { DataTypes } = Sequelize;
 const ProfilGuru = db.define('profil_guru', {
     id_profil_guru: {
         type: DataTypes.INTEGER,
+        autoIncrement: true,
         primaryKey: true
     },
     nip: {

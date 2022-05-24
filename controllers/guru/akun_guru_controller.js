@@ -27,11 +27,18 @@ export const getAllAkunGuru = async (req, res) => {
 
         });
 
-        res.json(query_akun);
+        if (query_akun.length > 0) {
+
+            res.json(query_akun);
+        }
+        else {
+            res.status(400).json({ msg: 'akun empty' })
+        }
 
     } catch (error) {
 
         console.log(error);
+        res.status(400).json(error)
 
     }
 
@@ -63,6 +70,8 @@ export const registerAkunGuru = async (req, res) => {
         res.json({ message: 'Register Success...' });
 
     } catch (error) {
+
+        console.log(error);
 
         res.status(400).json({ message: error.errors[0].message });
 

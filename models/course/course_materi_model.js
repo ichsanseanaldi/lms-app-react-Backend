@@ -8,6 +8,7 @@ const { DataTypes } = Sequelize;
 const CourseMateri = db.define('course_materi', {
     id_materi: {
         type: DataTypes.INTEGER,
+        autoIncrement: true,
         primaryKey: true
     },
     judul_materi: {

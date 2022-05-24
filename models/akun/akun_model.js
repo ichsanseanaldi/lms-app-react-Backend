@@ -6,7 +6,9 @@ const { DataTypes } = Sequelize;
 const Akun = db.define('akun', {
     id_akun: {
         type: DataTypes.INTEGER,
+        autoIncrement: true,
         primaryKey: true
+
     },
     username: {
         type: DataTypes.STRING

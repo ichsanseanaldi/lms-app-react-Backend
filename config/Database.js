@@ -1,8 +1,8 @@
 import { Sequelize } from "sequelize";
 
-const db = new Sequelize('db_lms', 'root', '', {
+const db = new Sequelize('lms_db', 'postgres', 'update123', {
     host: 'localhost',
-    dialect: 'mysql',
+    dialect: 'postgres',
     define: {
         timestamps: false
     }

@@ -38,7 +38,7 @@ Content-Type: application/json
 
 ###
 POST http://localhost:5000/course/verify-answer
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNpc3dhIiwicm9sZSI6InNpc3dhIiwiaXNOZXciOiJubyIsImlhdCI6MTY1MzMwOTY1OCwiZXhwIjoxNjUzMzA5Njc4fQ.U0Exp5s6kvfxodKl0bZVdLcao-7KEm0fRkqsPlb2VL4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNpc3dhIiwicm9sZSI6InNpc3dhIiwiaXNOZXciOiJubyIsImlhdCI6MTY1MzMxMTUyNCwiZXhwIjoxNjUzMzExNTQ0fQ.1kKy3Fvl-BmZNKvfmPDxOfWpldq2wVs1FxWZ5l-pVH8
 Content-Type: application/json
 
 {
@@ -69,7 +69,7 @@ Content-Type: application/json
 ###
 //jointbadges
 POST http://localhost:5000/siswa/add-badges
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF9ha3VuIjoyMiwidXNlcm5hbWUiOiJzaXN3YTEiLCJyb2xlIjoic2lzd2EiLCJpYXQiOjE2NTI4NTg4NzYsImV4cCI6MTY1Mjg4MDQ3Nn0.eVPUsNrZCsADnyrSX6z2KiYKzbvjqCrWamiWlEGvWfw
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNpc3dhIiwicm9sZSI6InNpc3dhIiwiaXNOZXciOiJubyIsImlhdCI6MTY1MzMxMTMzOSwiZXhwIjoxNjUzMzExMzU5fQ.eVnMXP_djlLFD25584-TGu9sqsvJynXGUb7TXEachUk
 Content-Type: application/json
 
 {

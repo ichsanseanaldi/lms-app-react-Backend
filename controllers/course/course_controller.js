@@ -421,14 +421,24 @@ export const getAllCourseExercise = async (req, res) => {
                 }
             })
 
+            if (joint.length > 0) {
+                res.json(joint)
+            }
+            else {
+                res.sendStatus(400);
+            }
 
-            res.json(joint)
+
         }
         if (role === 'guru') {
 
-            console.log(courseexercise);
+            if (courseexercise.length > 0) {
+                res.json(courseexercise)
+            }
+            else {
+                res.sendStatus(400);
+            }
 
-            res.json(courseexercise)
         }
 
 
