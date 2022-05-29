@@ -27,7 +27,7 @@ export const Login = async (req, res) => {
         }
 
         const accessToken = jwt.sign(user_info, process.env.ACCESS_TOKEN, {
-            expiresIn: '20s'
+            expiresIn: '30s'
         })
 
         const refreshToken = jwt.sign(user_info, process.env.REFRESH_TOKEN, {
@@ -51,7 +51,6 @@ export const Login = async (req, res) => {
 
 }
 
-
 export const Logout = async (req, res) => {
 
     try {
@@ -64,7 +63,11 @@ export const Logout = async (req, res) => {
 
             if (err) return res.json({ msg: "please login!" });
 
-            res.clearCookie('refreshToken');
+            res.clearCookie('refreshToken', {
+                httpOnly: true,
+                secure: true,
+                sameSite: 'none',
+            });
 
             return res.sendStatus(200);
 
@@ -75,7 +78,5 @@ export const Logout = async (req, res) => {
         res.sendStatus(400);
 
     }
-
-
 
 }

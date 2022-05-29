@@ -11,6 +11,12 @@ const db = new Sequelize(process.env.DATABASE_URL, {
     },
     define: {
         timestamps: false
+    },
+    pool: {
+        max: 11,
+        min: 0,
+        acquire: 30000,
+        idle: 10000
     }
 })
 

@@ -1,5 +1,6 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
+import { Op } from 'sequelize';
 
 import Akun from '../../models/akun/akun_model.js';
 
@@ -13,18 +14,19 @@ const checkRole = (req, res) => {
 
 }
 
-
-export const getAllAkunGuru = async (req, res) => {
+export const getAllAkun = async (req, res) => {
 
     checkRole(req, res);
 
     try {
 
         const query_akun = await Akun.findAll({
-
-            where: { role: "guru" },
-            attributes: ['id_akun', 'username']
-
+            where: {
+                role: {
+                    [Op.or]: ['guru', 'siswa']
+                }
+            },
+            attributes: ['id_akun', 'username', 'role']
         });
 
         if (query_akun.length > 0) {
@@ -47,7 +49,7 @@ export const getAllAkunGuru = async (req, res) => {
 
 export const registerAkunGuru = async (req, res) => {
 
-    checkRole(req);
+    checkRole(req, res);
 
     const { username, password } = req.body;
 
@@ -76,5 +78,36 @@ export const registerAkunGuru = async (req, res) => {
         res.status(400).json({ message: error.errors[0].message });
 
     }
+
+}
+
+export const deleteAkun = async (req, res) => {
+
+    checkRole(req, res);
+
+    const { id } = req.params;
+
+    console.log(id);
+
+    try {
+
+        const query_all = await Akun.destroy({
+            where: {
+                id_akun: id
+            }
+        })
+
+        if (query_all) return res.json({ msg: 'berhasil menghapus akun!' });
+
+    } catch (error) {
+
+        console.log(error);
+
+        res.status(400).json(error);
+
+
+    }
+
+
 
 }

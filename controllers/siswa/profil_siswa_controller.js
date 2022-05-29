@@ -82,6 +82,33 @@ export const getProfilSiswa = async (req, res) => {
 
 }
 
+export const getAllProfilSiswa = async (req, res) => {
+
+    try {
+
+        const query_profil = await ProfilSiswa.findAll({
+            attributes: ['id_profil_siswa', 'nama_siswa', 'point_siswa']
+        });
+
+        if (query_profil.length > 0) {
+            res.json(query_profil);
+        }
+        else {
+            res.sendStatus(400);
+        }
+
+
+
+    } catch (error) {
+
+        console.log(error);
+
+        res.json(error);
+
+    }
+
+}
+
 export const getBadgesSiswa = async (req, res) => {
 
     const refreshToken = req.cookies.refreshToken;
@@ -97,7 +124,8 @@ export const getBadgesSiswa = async (req, res) => {
             }
         })
 
-        const queryjoint = await BadgesProfilJoint.findAll({ include: Badges }, {
+        const queryjoint = await BadgesProfilJoint.findAll({
+            include: Badges,
             where: {
                 id_profil_siswa: resultProfil.id_profil_siswa
             }

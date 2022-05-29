@@ -29,7 +29,7 @@ export const addProfilGuru = async (req, res) => {
         res.status(200).json({ msg: 'success!' })
 
     } catch (error) {
-        console.log(error);
+        res.json(error)
     }
 
 }
@@ -52,9 +52,7 @@ export const getProfilGuru = async (req, res) => {
 
     } catch (error) {
 
-        console.log(error)
+        res.json(error)
 
     }
-
-
 }

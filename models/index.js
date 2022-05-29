@@ -78,7 +78,6 @@ Badges.hasMany(BadgesProfilJoint, {
 
 /////
 
-
 ProfilSiswa.belongsToMany(CourseExercise, {
     through: ExerciseJoint,
     foreignKey: 'id_profil_siswa'

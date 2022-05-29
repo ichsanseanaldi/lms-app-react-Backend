@@ -1,16 +1,14 @@
 import jwt from 'jsonwebtoken';
+import { Op } from 'sequelize';
 
 import CourseExercise from "../../models/course/course_exercise_model.js";
 import CourseExerciseSoal from '../../models/course/course_exercise_soal_model.js';
 import CourseMateri from "../../models/course/course_materi_model.js";
 import Course from "../../models/course/course_model.js";
 import ProfilGuru from '../../models/guru/profil_guru_model.js';
-
-
-import { BadgesProfilJoint, CourseProfilJoint, MateriJoint, ExerciseJoint } from '../../models/index.js';
 import ProfilSiswa from '../../models/siswa/profil_siswa_model.js';
-import { Op, where } from 'sequelize';
 import Badges from '../../models/badges/badges_model.js';
+import { BadgesProfilJoint, CourseProfilJoint, MateriJoint, ExerciseJoint } from '../../models/index.js';
 
 export const addCourse = async (req, res) => {
 
@@ -36,8 +34,6 @@ export const addCourse = async (req, res) => {
 
 }
 
-//?=================================================================================================================
-
 export const addCourseMateri = async (req, res) => {
 
     const { judulMateri, isiMateri, pointMateri, idCourse } = req.body;
@@ -62,7 +58,6 @@ export const addCourseMateri = async (req, res) => {
 
 }
 
-
 export const addCourseExercise = async (req, res) => {
 
 
@@ -82,15 +77,12 @@ export const addCourseExercise = async (req, res) => {
 
         res.status(200).json({ msg: 'exercise initialized!' })
 
-
     } catch (error) {
         console.log(error);
         res.status(403).json('query error gan!')
     }
 
 }
-
-//?=================================================================================================================
 
 export const addCourseExerciseSoal = async (req, res) => {
 
@@ -123,8 +115,6 @@ export const addCourseExerciseSoal = async (req, res) => {
 
 }
 
-//?=================================================================================================================
-
 export const getAllCourse = async (req, res) => {
 
     const refreshToken = req.cookies.refreshToken;
@@ -151,7 +141,7 @@ export const getAllCourse = async (req, res) => {
                 res.json(course);
             }
             else {
-                res.sendStatus(400);
+                res.json(['']);
             }
 
         }
@@ -164,7 +154,8 @@ export const getAllCourse = async (req, res) => {
                 }
             })
 
-            const coursejoint = await CourseProfilJoint.findAll({ include: Course }, {
+            const coursejoint = await CourseProfilJoint.findAll({
+                include: Course,
                 where: {
                     id_profil_siswa: id_profil_siswa
                 }
@@ -174,9 +165,8 @@ export const getAllCourse = async (req, res) => {
                 res.json(coursejoint);
             }
             else {
-                res.sendStatus(400);
+                res.json(['']);
             }
-
         }
 
     }
@@ -186,8 +176,6 @@ export const getAllCourse = async (req, res) => {
     }
 
 }
-
-//?=================================================================================================================
 
 export const getCourseDetailByCode = async (req, res) => {
 
@@ -230,8 +218,6 @@ export const getCourseDetailByCode = async (req, res) => {
 
 }
 
-//?=================================================================================================================
-
 export const getCourseDetailById = async (req, res) => {
 
     const { idcourse } = req.params;
@@ -259,55 +245,20 @@ export const getCourseDetailById = async (req, res) => {
 
 }
 
-//?=================================================================================================================
-
 export const getAllCourseMateri = async (req, res) => {
 
     const { idcourse } = req.params;
-
-    try {
-        const coursemateri = await CourseMateri.findAll({
-            where: {
-                id_course: idcourse
-            }
-        })
-
-
-        if (coursemateri.length > 0) {
-            res.json(coursemateri)
-        }
-        else {
-            res.sendStatus(400);
-        }
-
-
-    }
-    catch (err) {
-        console.log(err);
-        res.status(403).json('query error gan!')
-    }
-
-}
-
-//?=================================================================================================================
-
-export const getCourseMateriDetail = async (req, res) => {
-
-    const { idmateri } = req.params;
     const refreshToken = req.cookies.refreshToken;
-
-
 
     try {
 
         const { id_akun, role } = jwt.decode(refreshToken);
 
-        const materi = await CourseMateri.findOne({
+        const materi = await CourseMateri.findAll({
             where: {
-                id_materi: idmateri
+                id_course: idcourse
             }
-        }
-        )
+        })
 
         if (role === 'siswa') {
 
@@ -317,20 +268,27 @@ export const getCourseMateriDetail = async (req, res) => {
                 }
             })
 
-            const joint = await MateriJoint.findOne({
+            const joint = await MateriJoint.findAll({
+                include: {
+                    model: CourseMateri,
+                    where: { id_course: idcourse }
+                },
                 where: {
-                    [Op.and]: [
-                        { id_profil_siswa: profil.id_profil_siswa },
-                        { id_materi: idmateri }
-                    ]
-                }
-            })
+                    id_profil_siswa: profil.id_profil_siswa
 
-            res.json({ joint, materi });
+                }
+            }
+            )
+
+            res.json(joint);
         }
+
         if (role === 'guru') {
-            res.json({ joint: null, materi })
+
+            res.json(materi)
         }
+
+
     }
     catch (err) {
         console.log(err);
@@ -338,8 +296,6 @@ export const getCourseMateriDetail = async (req, res) => {
     }
 
 }
-
-//?=================================================================================================================
 
 export const getOneCourseExerciseByCode = async (req, res) => {
 
@@ -353,7 +309,6 @@ export const getOneCourseExerciseByCode = async (req, res) => {
             }
         })
 
-
         res.json(courseexercise)
 
     } catch (error) {
@@ -363,8 +318,6 @@ export const getOneCourseExerciseByCode = async (req, res) => {
     }
 
 }
-
-//?=================================================================================================================
 
 export const getOneCourseExerciseById = async (req, res) => {
 
@@ -387,8 +340,6 @@ export const getOneCourseExerciseById = async (req, res) => {
     }
 
 }
-
-//?=================================================================================================================
 
 export const getAllCourseExercise = async (req, res) => {
 
@@ -413,7 +364,8 @@ export const getAllCourseExercise = async (req, res) => {
                 }
             })
 
-            const joint = await ExerciseJoint.findAll({ include: CourseExercise }, {
+            const joint = await ExerciseJoint.findAll({
+                include: CourseExercise,
                 where: {
 
                     id_profil_siswa: queryprofil.id_profil_siswa
@@ -425,23 +377,18 @@ export const getAllCourseExercise = async (req, res) => {
                 res.json(joint)
             }
             else {
-                res.sendStatus(400);
+                res.json([]);
             }
-
 
         }
         if (role === 'guru') {
-
             if (courseexercise.length > 0) {
                 res.json(courseexercise)
             }
             else {
-                res.sendStatus(400);
+                res.json([]);
             }
-
         }
-
-
     }
     catch (err) {
         console.log(err);
@@ -449,8 +396,6 @@ export const getAllCourseExercise = async (req, res) => {
     }
 
 }
-
-//?=================================================================================================================
 
 export const getAllCourseExerciseSoal = async (req, res) => {
 
@@ -467,14 +412,12 @@ export const getAllCourseExerciseSoal = async (req, res) => {
                     id_exercise: idexercise
                 }
             })
-
             if (soalexercise.length > 0) {
                 res.json(soalexercise)
             }
             else {
                 res.sendStatus(400);
             }
-
         }
         else {
             const soalexercise = await CourseExerciseSoal.findAll({
@@ -485,28 +428,19 @@ export const getAllCourseExerciseSoal = async (req, res) => {
                     exclude: ['option_key']
                 }
             })
-
-
             if (soalexercise.length > 0) {
                 res.json(soalexercise)
             }
             else {
                 res.sendStatus(400);
             }
-
         }
-
-
-
     }
     catch (err) {
         console.log(err);
         res.status(403).json('query error gan!')
     }
-
 }
-
-//?=================================================================================================================
 
 export const joinCourse = async (req, res) => {
 
@@ -569,7 +503,6 @@ export const joinCourse = async (req, res) => {
             }
         })
 
-
         await MateriJoint.bulkCreate(materi_option)
 
         await ExerciseJoint.bulkCreate(exercise_option)
@@ -585,13 +518,10 @@ export const joinCourse = async (req, res) => {
 
 }
 
-//?=================================================================================================================verifyanswer
-
 export const verifyAnswer = async (req, res) => {
 
     const { jawaban, idexercise } = req.body;
     const refreshToken = req.cookies.refreshToken;
-
 
     try {
 
@@ -626,7 +556,7 @@ export const verifyAnswer = async (req, res) => {
             }
         }
 
-        const queryupdate = await ExerciseJoint.update({ isFinished: "true" }, {
+        await ExerciseJoint.update({ isFinished: "true" }, {
             where: {
                 [Op.and]: [
                     { id_profil_siswa: id_profil_siswa },
@@ -653,7 +583,6 @@ export const verifyAnswer = async (req, res) => {
                 }
             }
         )
-
         const pointBadges = newlevel * 100;
 
         const badgesquery = await Badges.findAll({
@@ -667,9 +596,6 @@ export const verifyAnswer = async (req, res) => {
             }
         })
 
-        console.log(pointBadges);
-        console.log('badgesquery', badgesquery);
-
         const arr = JSON.parse(JSON.stringify(badgesquery));
 
         const option = arr.map(e => {
@@ -679,40 +605,26 @@ export const verifyAnswer = async (req, res) => {
             }
         })
 
-        console.log('option', option.length);
-
         const check = await BadgesProfilJoint.findOne({
             where: {
                 [Op.and]: option,
             }
-
         })
 
         if (option.length > 0 && !check) {
-
             await BadgesProfilJoint.bulkCreate(option)
-
             res.status(200).json({ msg: 'Badges telah didapatkan!' })
-
         }
         else {
             console.log('Badge sudah ada atau belum memenuhi');
             res.status(200).json({ msg: 'Badges sudah ada atau belum memenuhi' })
-
         }
-
-
-
     } catch (error) {
-
         console.log(error);
         res.status(200).json('badges sudah ada')
-
     }
 
 }
-
-//?==============================================================================================================
 
 export const verifyMateri = async (req, res) => {
 
@@ -730,7 +642,7 @@ export const verifyMateri = async (req, res) => {
             }
         })
 
-        const query = await MateriJoint.update({ isFinished: "true" }, {
+        await MateriJoint.update({ isFinished: "true" }, {
             where: {
                 [Op.and]: [
                     { id_profil_siswa: id_profil_siswa },
@@ -745,7 +657,7 @@ export const verifyMateri = async (req, res) => {
 
         const newlevel = levelUp(pointResult);
 
-        const updateProfil = await ProfilSiswa.update({
+        await ProfilSiswa.update({
             materi_finished: materiFinished,
             point_siswa: pointResult,
             level_siswa: newlevel
@@ -770,7 +682,6 @@ export const verifyMateri = async (req, res) => {
 
             }
         })
-
 
         const arr = JSON.parse(JSON.stringify(badgesquery));
 
@@ -803,16 +714,10 @@ export const verifyMateri = async (req, res) => {
 
 
     } catch (error) {
-
         console.log(error);
         res.status(200).json('badges sudah ada')
-
     }
-
-
 }
-
-//*===========================================FUNCTION===================================================================
 
 function levelUp(e) {
 

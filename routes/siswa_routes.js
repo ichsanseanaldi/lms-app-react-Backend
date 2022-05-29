@@ -1,13 +1,10 @@
 import express from "express";
 
-//controller
 import { joinCourse } from "../controllers/course/course_controller.js";
 import { addProfilSiswa, getBadgesSiswa, getProfilSiswa } from "../controllers/siswa/profil_siswa_controller.js";
 
-//verification
 import { verifyToken } from "../middleware/TokenVerification.js";
 
-//router init
 const router = express.Router();
 
 router.post('/join-course', verifyToken, joinCourse);

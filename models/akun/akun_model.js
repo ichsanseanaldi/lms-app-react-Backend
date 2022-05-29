@@ -8,7 +8,6 @@ const Akun = db.define('akun', {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true
-
     },
     username: {
         type: DataTypes.STRING

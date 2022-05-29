@@ -1,6 +1,5 @@
 import express from "express";
 
-//controller
 import {
     getCourseDetailById,
     getAllCourseExercise,
@@ -13,14 +12,12 @@ import {
     verifyMateri,
     getOneCourseExerciseByCode,
     getOneCourseExerciseById,
-    getCourseMateriDetail
 }
     from "../controllers/course/course_controller.js";
 
-//verification
+
 import { verifyToken } from "../middleware/TokenVerification.js";
 
-//routing init
 const router = express.Router();
 
 router.get('/get-course', verifyToken, getAllCourse);
@@ -29,7 +26,6 @@ router.get('/get-course-detail/:idcourse', verifyToken, getCourseDetailById);
 router.get('/get-course-detail-code/:code', verifyToken, getCourseDetailByCode);
 
 router.get('/get-course-materi/:idcourse', verifyToken, getAllCourseMateri);
-router.get('/get-course-materi-detail/:idmateri', verifyToken, getCourseMateriDetail);
 
 router.get('/get-course-exercise/:codeexercise', verifyToken, getOneCourseExerciseByCode);
 router.get('/get-course-exercise-all/:idcourse', verifyToken, getAllCourseExercise);

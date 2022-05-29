@@ -1,15 +1,13 @@
 import express from "express";
 
-//controller
-import { getAllAkunGuru, registerAkunGuru } from "../controllers/guru/akun_guru_controller.js";
+import { deleteAkun, getAllAkun, registerAkunGuru } from "../controllers/guru/akun_guru_controller.js";
 
-//verification
 import { verifyToken } from "../middleware/TokenVerification.js";
 
-//routing init
 const router = express.Router();
 
-router.get('/get-akun-guru', verifyToken, getAllAkunGuru);
+router.get('/get-akun', verifyToken, getAllAkun);
 router.post('/register-akun', verifyToken, registerAkunGuru);
+router.delete('/delete-akun/:id', verifyToken, deleteAkun);
 
 export default router;
