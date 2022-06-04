@@ -1,11 +1,8 @@
 import express from 'express';
-
 import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
-
 import db from './config/Database.js';
-
 import admin_routes from './routes/admin_routes.js';
 import authentication_routes from './routes/authentication_routes.js';
 import course_routes from './routes/course_routes.js';
@@ -26,8 +23,7 @@ try {
 
 app.use(cors({
     credentials: true,
-    origin: true,
-    // origin: 'https://app-lms.netlify.app',
+    origin: 'https://fwtl.netlify.app',
 }))
 
 app.use(cookieParser());

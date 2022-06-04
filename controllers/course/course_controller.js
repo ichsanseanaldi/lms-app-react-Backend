@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import { Op, where } from 'sequelize';
+import { Op } from 'sequelize';
 
 import CourseExercise from "../../models/course/course_exercise_model.js";
 import CourseExerciseSoal from '../../models/course/course_exercise_soal_model.js';

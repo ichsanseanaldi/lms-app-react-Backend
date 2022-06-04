@@ -48,7 +48,6 @@ export const getAllAkun = async (req, res) => {
 
 }
 
-
 export const registerAkunGuru = async (req, res) => {
 
     checkRole(req, res);

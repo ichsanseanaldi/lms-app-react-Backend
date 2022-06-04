@@ -10,7 +10,7 @@ export const verifyToken = (req, res, next) => {
 
     if (token === null || !refreshToken) return res.status(403).json({ msg: 'token is empty, please login!' });
 
-    jwt.verify(token, process.env.ACCESS_TOKEN, (err, dec) => {
+    jwt.verify(token, process.env.ACCESS_TOKEN, err => {
         if (err) return res.status(403).json({ msg: "token is not verified!" });
         next();
     })

@@ -51,7 +51,6 @@ export const getAkunSiswaByUsername = async (req, res) => {
 
 }
 
-
 export const registerAkunSiswa = async (req, res) => {
 
     const { username, password } = req.body;

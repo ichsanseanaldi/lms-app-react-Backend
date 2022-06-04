@@ -1,6 +1,5 @@
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
-
 import Akun from "../../models/akun/akun_model.js";
 
 export const Login = async (req, res) => {
@@ -31,13 +30,13 @@ export const Login = async (req, res) => {
         })
 
         const refreshToken = jwt.sign(user_info, process.env.REFRESH_TOKEN, {
-            expiresIn: '1h'
+            expiresIn: '2h'
         })
 
         res.cookie('refreshToken', refreshToken, {
             httpOnly: true,
-            // secure: true,
-            // sameSite: 'none',
+            secure: true,
+            sameSite: 'none',
             maxAge: 24 * 60 * 60 * 1000
         });
 
@@ -65,8 +64,8 @@ export const Logout = async (req, res) => {
 
             res.clearCookie('refreshToken', {
                 httpOnly: true,
-                // secure: true,
-                // sameSite: 'none',
+                secure: true,
+                sameSite: 'none',
             });
 
             return res.sendStatus(200);
