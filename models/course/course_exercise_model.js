@@ -16,6 +16,9 @@ const CourseExercise = db.define('course_exercise', {
     },
     judul_exercise: {
         type: DataTypes.STRING
+    },
+    point_exercise: {
+        type: DataTypes.INTEGER
     }
 }, {
     freezeTableName: true

@@ -17,7 +17,7 @@ export const Login = async (req, res) => {
 
         const matchPassword = await bcrypt.compare(req.body.password, query_akun.password);
 
-        if (!matchPassword) return res.status(400).json({ msg: "password salah" });
+        if (!matchPassword) return res.json({ msg: "password salah" });
 
         const user_info = {
             id_akun: query_akun.id_akun,
@@ -36,8 +36,8 @@ export const Login = async (req, res) => {
 
         res.cookie('refreshToken', refreshToken, {
             httpOnly: true,
-            secure: true,
-            sameSite: 'none',
+            // secure: true,
+            // sameSite: 'none',
             maxAge: 24 * 60 * 60 * 1000
         });
 
@@ -65,8 +65,8 @@ export const Logout = async (req, res) => {
 
             res.clearCookie('refreshToken', {
                 httpOnly: true,
-                secure: true,
-                sameSite: 'none',
+                // secure: true,
+                // sameSite: 'none',
             });
 
             return res.sendStatus(200);

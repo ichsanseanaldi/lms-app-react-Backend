@@ -17,6 +17,9 @@ const Badges = db.define('badges', {
     },
     point_badges: {
         type: DataTypes.INTEGER
+    },
+    badge_svg: {
+        type: DataTypes.TEXT
     }
 }, {
     freezeTableName: true

@@ -87,7 +87,7 @@ export const getAllProfilSiswa = async (req, res) => {
     try {
 
         const query_profil = await ProfilSiswa.findAll({
-            attributes: ['id_profil_siswa', 'nama_siswa', 'point_siswa']
+            attributes: ['id_profil_siswa', 'nama_siswa', 'point_siswa', 'level_siswa']
         });
 
         if (query_profil.length > 0) {

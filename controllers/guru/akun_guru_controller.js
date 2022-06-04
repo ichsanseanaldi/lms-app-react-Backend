@@ -29,6 +29,8 @@ export const getAllAkun = async (req, res) => {
             attributes: ['id_akun', 'username', 'role']
         });
 
+        console.log(query_akun);
+
         if (query_akun.length > 0) {
 
             res.json(query_akun);

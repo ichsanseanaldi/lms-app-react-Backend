@@ -928,12 +928,10 @@ ALTER TABLE public.profil_siswa ALTER COLUMN id_profil_siswa ADD GENERATED ALWAY
 
 COPY public.akun (id_akun, username, password, role, "isNew") FROM stdin;
 1	admin	$2b$10$Q7cotU9AgnArC3iVWE6gEubpjmpuB.emfRfp5hhNihiD/kjDg.MLi	admin	no
-21	della	$2b$10$FdIloCwc3XcfWwm9Z8rnn.PxF4HMjiLoCmuUOE20uoqAwkh4J3XJu	guru	no
-34	siswa	$2b$10$ZGDPOga3PK4HERL7feztMOLeE.ZkHbyt6MeNXwybOtOZ3F3NFTLA.	siswa	no
-35	guruku	$2b$10$UjR/lD1sRhYR90uxmAp4ceWEGRRsDm5R8jc984ViHmQp/S610TPxq	guru	no
-2	gurukuz	$2b$10$M/gKtytpytwF2mx1P5BYSOXcCDbVUFoqaZFVOGbCGZxkIz51IxMWK	guru	yes
-4	asd	$2b$10$55l1dK/8EHGON66dwAQ.bOKpKR83ThHBC0yegDLFO/hYgCfKM.o2.	guru	yes
-5	nhuj	$2b$10$TKt/Gu/SDtb6Ga5pdH2XQO2deDIzmR3mZ3fKxxntbo4bf2qS26Ho.	siswa	yes
+45	asd	$2b$10$HiBGLUdvvbPjzZ96Uete8urglURcLnJSWOdLopiy0Ka4d0Wi3kbc.	siswa	no
+40	della	$2b$10$EhxvuoGGT/p7.lGvlR4jcOthdiWoIK/D4vHaTFtwE/C5NyXr8BfcG	guru	no
+41	siswa	$2b$10$D9wwMtH8lIpkGfUBMXXZEelqULu2tS.BFJc9C5YqMCA1ey5HLuWEa	siswa	no
+44	zxc	$2b$10$HO9SXvPgYSjauLujJEvp.enbLVFhMAX2v/Sybb1Fizq7aNqSrvZ7i	siswa	yes
 \.
 
 
@@ -968,11 +966,8 @@ COPY public.badges (id_badges, nama_badges, deskripsi_badges, point_badges, mate
 --
 
 COPY public.course (id_course, code_course, judul_course, deskripsi_course, id_profil_guru) FROM stdin;
-8	4011231	HTML Dasar	Course untuk mempelajari HTML	9
-9	64865	HTML gan	HTML AJAH SIH	9
-10	28533	kursus masak	masak ikan cupang	9
-1	32579	juju	juju	9
-2	79030	yyy	yyy	9
+12	86162	HTML Dasar	Course untuk belajar HTML	9
+13	99025	COURSE TWO	COURSE TWO NGABB	9
 \.
 
 
@@ -981,10 +976,7 @@ COPY public.course (id_course, code_course, judul_course, deskripsi_course, id_p
 --
 
 COPY public.course_exercise (id_exercise, code_exercise, judul_exercise, id_course) FROM stdin;
-25	31786	ngusep	8
-27	91194	ngusepe	8
-29	12438	dddd	8
-30	32277	youtbe	9
+14	98673	HTML Exercise	12
 \.
 
 
@@ -993,9 +985,7 @@ COPY public.course_exercise (id_exercise, code_exercise, judul_exercise, id_cour
 --
 
 COPY public.course_exercise_soal (id_soal, nomor_soal, pertanyaan_soal, option_a, option_b, option_c, option_d, option_key, point_soal, id_exercise) FROM stdin;
-14	1	siapa kamu	ujang	ichsan	mevran	kisno	option_b	100	27
-15	1	siapa kamu	maguayer	krisno	porginho	pessi	option_a	50	30
-16	2	siapa kamu	maguayer	krisno	porginho	pessi	option_d	50	27
+31	2	Apakah SAYA GANTENG?	ya	ya sekali	ya	ya	option_b	100	14
 \.
 
 
@@ -1004,11 +994,10 @@ COPY public.course_exercise_soal (id_soal, nomor_soal, pertanyaan_soal, option_a
 --
 
 COPY public.course_materi (id_materi, judul_materi, isi_materi, point_materi, id_course) FROM stdin;
-8	Basic HTML Tag	<h1>hello world</h1>	50	8
-9	kucing beranak	<p>Kucing bisa punya anak lebih dari 1</p>\n<p>berikut nama nama kucing</p>\n<p>-cibet</p>\n<p>-ridin</p>\n<p>-geulis</p>\n<p>-bocil</p>\n<p>-oren</p>	50	8
-10	sdfsdfs	<p><strong>sdfsdfsdf</strong></p>\n<p>&nbsp;</p>\n<p><strong>asdasdasdasd</strong></p>\n<p><strong>asdasdasdasd</strong></p>\n<p><strong>eeeeeeee</strong></p>\n<p>&nbsp;</p>\n<p><em><strong>asddasdasd</strong></em></p>	100	8
-12	sdfsdfs31	<h1>asdasd<strong>asdasdasd</strong></h1><p>manusia hina</p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><ol><li>ubiw</li></ol>	100	8
-1	asdasd10		50	8
+21	HTML Dasar	<p>HTML adalah HyperText Markup Language yang digunakan untuk membuat website</p>\n<p>berikut contoh-contoh tag HTML</p>\n<ul>\n<li>&lt;h1&gt;&lt;/h1&gt;</li>\n<li>&lt;p&gt;&lt;/p&gt;</li>\n<li>&lt;div&gt;&lt;/div&gt;</li>\n<li>&lt;form&gt;&lt;/form&gt;</li>\n</ul>	100	12
+22	asdasdasd	<p>xvxcvxcvxcxcv</p>	10	12
+23	zxc	<p>zxc</p>	10	12
+24	cxvxcv	<p>xcvvxc</p>	10	12
 \.
 
 
@@ -1017,12 +1006,57 @@ COPY public.course_materi (id_materi, judul_materi, isi_materi, point_materi, id
 --
 
 COPY public.history_store (timemark, table_name, pk_date_src, pk_date_dest, record_state) FROM stdin;
-2022-05-24 13:14:28.34502	akun	<id_akun>2</id_akun>	<id_akun>2</id_akun>	1
-2022-05-24 13:14:43.485976	akun	<id_akun>4</id_akun>	<id_akun>4</id_akun>	1
-2022-05-24 13:18:36.12394	course_materi	<id_materi>1</id_materi>	<id_materi>1</id_materi>	1
-2022-05-24 13:18:46.33298	akun	<id_akun>5</id_akun>	<id_akun>5</id_akun>	1
-2022-05-24 13:18:52.981528	course	<id_course>1</id_course>	<id_course>1</id_course>	1
-2022-05-24 14:01:19.480175	course	<id_course>2</id_course>	<id_course>2</id_course>	1
+2022-05-24 21:27:46.061531	profil_guru	<id_profil_guru>17</id_profil_guru>	<id_profil_guru>17</id_profil_guru>	3
+2022-05-28 17:35:49.231176	joint_siswa_badges	<id_joint_badges>29</id_joint_badges>	<id_joint_badges>29</id_joint_badges>	1
+2022-05-25 10:17:48.537967	course_exercise	<id_exercise>25</id_exercise>	<id_exercise>25</id_exercise>	3
+2022-05-25 10:17:48.537967	course_exercise	<id_exercise>27</id_exercise>	<id_exercise>27</id_exercise>	3
+2022-05-25 10:17:48.537967	course_exercise	<id_exercise>29</id_exercise>	<id_exercise>29</id_exercise>	3
+2022-05-25 10:17:48.537967	joint_siswa_course	<id_joint_course>14</id_joint_course>	<id_joint_course>14</id_joint_course>	3
+2022-05-28 16:36:43.575924	course_materi	<id_materi>21</id_materi>	<id_materi>21</id_materi>	1
+2022-05-25 10:17:48.537967	course_exercise	<id_exercise>30</id_exercise>	<id_exercise>30</id_exercise>	3
+2022-05-25 10:17:48.537967	joint_exercise	<id_joint_exercise>13</id_joint_exercise>	<id_joint_exercise>13</id_joint_exercise>	3
+2022-05-25 10:17:48.537967	joint_exercise	<id_joint_exercise>12</id_joint_exercise>	<id_joint_exercise>12</id_joint_exercise>	3
+2022-05-25 10:17:48.537967	joint_exercise	<id_joint_exercise>14</id_joint_exercise>	<id_joint_exercise>14</id_joint_exercise>	3
+2022-05-25 10:17:48.537967	course_exercise_soal	<id_soal>14</id_soal>	<id_soal>14</id_soal>	3
+2022-05-28 16:43:51.808744	course_materi	<id_materi>23</id_materi>	<id_materi>23</id_materi>	1
+2022-05-25 10:17:48.537967	joint_exercise	<id_joint_exercise>15</id_joint_exercise>	<id_joint_exercise>15</id_joint_exercise>	3
+2022-05-25 10:17:48.537967	joint_materi	<id_joint_materi>48</id_joint_materi>	<id_joint_materi>48</id_joint_materi>	3
+2022-05-25 10:17:48.537967	joint_materi	<id_joint_materi>49</id_joint_materi>	<id_joint_materi>49</id_joint_materi>	3
+2022-05-25 10:17:48.537967	joint_materi	<id_joint_materi>50</id_joint_materi>	<id_joint_materi>50</id_joint_materi>	3
+2022-05-25 10:17:48.537967	joint_materi	<id_joint_materi>51</id_joint_materi>	<id_joint_materi>51</id_joint_materi>	3
+2022-05-28 16:44:59.136086	course_exercise	<id_exercise>14</id_exercise>	<id_exercise>14</id_exercise>	1
+2022-05-28 16:47:25.77578	akun	<id_akun>41</id_akun>	<id_akun>41</id_akun>	1
+2022-05-25 10:17:48.964742	profil_siswa	<id_profil_siswa>45</id_profil_siswa>	<id_profil_siswa>45</id_profil_siswa>	3
+2022-05-25 10:17:48.964742	joint_siswa_badges	<id_joint_badges>24</id_joint_badges>	<id_joint_badges>24</id_joint_badges>	3
+2022-05-25 10:17:48.964742	joint_siswa_badges	<id_joint_badges>63</id_joint_badges>	<id_joint_badges>63</id_joint_badges>	3
+2022-05-25 10:17:48.964742	joint_siswa_badges	<id_joint_badges>64</id_joint_badges>	<id_joint_badges>64</id_joint_badges>	3
+2022-05-25 10:17:48.964742	joint_siswa_badges	<id_joint_badges>65</id_joint_badges>	<id_joint_badges>65</id_joint_badges>	3
+2022-05-25 10:17:48.964742	joint_siswa_badges	<id_joint_badges>66</id_joint_badges>	<id_joint_badges>66</id_joint_badges>	3
+2022-05-25 10:17:48.964742	joint_siswa_badges	<id_joint_badges>67</id_joint_badges>	<id_joint_badges>67</id_joint_badges>	3
+2022-05-25 10:17:48.964742	joint_siswa_badges	<id_joint_badges>68</id_joint_badges>	<id_joint_badges>68</id_joint_badges>	3
+2022-05-25 10:17:48.964742	joint_siswa_badges	<id_joint_badges>69</id_joint_badges>	<id_joint_badges>69</id_joint_badges>	3
+2022-05-28 16:47:26.112563	joint_siswa_badges	<id_joint_badges>19</id_joint_badges>	<id_joint_badges>19</id_joint_badges>	1
+2022-05-28 16:52:55.900053	joint_siswa_badges	<id_joint_badges>20</id_joint_badges>	<id_joint_badges>20</id_joint_badges>	1
+2022-05-28 16:52:55.900053	joint_siswa_badges	<id_joint_badges>21</id_joint_badges>	<id_joint_badges>21</id_joint_badges>	1
+2022-05-28 16:53:21.563092	joint_siswa_badges	<id_joint_badges>25</id_joint_badges>	<id_joint_badges>25</id_joint_badges>	1
+2022-05-28 16:53:21.563092	joint_siswa_badges	<id_joint_badges>26</id_joint_badges>	<id_joint_badges>26</id_joint_badges>	1
+2022-05-28 16:34:25.116478	profil_guru	<id_profil_guru>9</id_profil_guru>	<id_profil_guru>9</id_profil_guru>	1
+2022-05-28 16:34:25.154907	akun	<id_akun>40</id_akun>	<id_akun>40</id_akun>	1
+2022-05-28 16:34:46.895762	course	<id_course>12</id_course>	<id_course>12</id_course>	1
+2022-05-28 16:43:20.224922	course_materi	<id_materi>22</id_materi>	<id_materi>22</id_materi>	1
+2022-05-28 16:44:35.918138	course_materi	<id_materi>24</id_materi>	<id_materi>24</id_materi>	1
+2022-05-28 16:47:06.157031	course_exercise_soal	<id_soal>31</id_soal>	<id_soal>31</id_soal>	1
+2022-05-28 16:48:29.821073	joint_siswa_course	<id_joint_course>5</id_joint_course>	<id_joint_course>5</id_joint_course>	1
+2022-05-28 16:52:55.847536	joint_materi	<id_joint_materi>8</id_joint_materi>	<id_joint_materi>8</id_joint_materi>	1
+2022-05-28 16:53:07.769446	joint_materi	<id_joint_materi>9</id_joint_materi>	<id_joint_materi>9</id_joint_materi>	1
+2022-05-28 16:53:10.343706	joint_materi	<id_joint_materi>10</id_joint_materi>	<id_joint_materi>10</id_joint_materi>	1
+2022-05-28 16:53:12.522764	joint_materi	<id_joint_materi>11</id_joint_materi>	<id_joint_materi>11</id_joint_materi>	1
+2022-05-28 16:53:21.426935	joint_exercise	<id_joint_exercise>5</id_joint_exercise>	<id_joint_exercise>5</id_joint_exercise>	1
+2022-05-28 16:53:21.541378	profil_siswa	<id_profil_siswa>10</id_profil_siswa>	<id_profil_siswa>10</id_profil_siswa>	1
+2022-05-28 17:35:35.707843	akun	<id_akun>44</id_akun>	<id_akun>44</id_akun>	1
+2022-05-28 17:35:49.028141	akun	<id_akun>45</id_akun>	<id_akun>45</id_akun>	1
+2022-05-28 17:35:49.213939	profil_siswa	<id_profil_siswa>13</id_profil_siswa>	<id_profil_siswa>13</id_profil_siswa>	1
+2022-05-28 17:36:39.692593	course	<id_course>13</id_course>	<id_course>13</id_course>	1
 \.
 
 
@@ -1031,10 +1065,7 @@ COPY public.history_store (timemark, table_name, pk_date_src, pk_date_dest, reco
 --
 
 COPY public.joint_exercise (id_joint_exercise, id_profil_siswa, id_exercise, "isFinished") FROM stdin;
-12	45	27	true
-13	45	25	false
-14	45	27	true
-15	45	29	false
+5	10	14	true
 \.
 
 
@@ -1043,10 +1074,10 @@ COPY public.joint_exercise (id_joint_exercise, id_profil_siswa, id_exercise, "is
 --
 
 COPY public.joint_materi (id_joint_materi, id_profil_siswa, id_materi, "isFinished") FROM stdin;
-48	45	8	true
-49	45	9	true
-50	45	10	true
-51	45	12	false
+8	10	21	true
+9	10	22	true
+10	10	23	true
+11	10	24	true
 \.
 
 
@@ -1055,14 +1086,12 @@ COPY public.joint_materi (id_joint_materi, id_profil_siswa, id_materi, "isFinish
 --
 
 COPY public.joint_siswa_badges (id_joint_badges, id_profil_siswa, id_badges) FROM stdin;
-24	45	1
-63	45	2
-64	45	3
-65	45	4
-66	45	5
-67	45	12
-68	45	7
-69	45	10
+19	10	1
+20	10	2
+21	10	3
+25	10	5
+26	10	7
+29	13	1
 \.
 
 
@@ -1071,7 +1100,7 @@ COPY public.joint_siswa_badges (id_joint_badges, id_profil_siswa, id_badges) FRO
 --
 
 COPY public.joint_siswa_course (id_joint_course, id_profil_siswa, id_course, "isJoined") FROM stdin;
-14	45	8	true
+5	10	12	true
 \.
 
 
@@ -1080,8 +1109,7 @@ COPY public.joint_siswa_course (id_joint_course, id_profil_siswa, id_course, "is
 --
 
 COPY public.profil_guru (id_profil_guru, nip, nama_guru, id_akun) FROM stdin;
-9	1805420	della	21
-17	123454	Bujang	35
+9	1805420	Della Dwi	40
 \.
 
 
@@ -1090,7 +1118,8 @@ COPY public.profil_guru (id_profil_guru, nip, nama_guru, id_akun) FROM stdin;
 --
 
 COPY public.profil_siswa (id_profil_siswa, nama_siswa, level_siswa, point_siswa, materi_finished, exercise_finished, id_akun) FROM stdin;
-45	SAFRON	4	400	3	1	34
+10	siswa Gantenk	3	330	4	1	41
+13	asd	1	100	0	0	45
 \.
 
 
@@ -1105,7 +1134,7 @@ SELECT pg_catalog.setval('public.akun_id_akun_seq', 1, true);
 -- Name: akun_id_akun_seq1; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.akun_id_akun_seq1', 5, true);
+SELECT pg_catalog.setval('public.akun_id_akun_seq1', 45, true);
 
 
 --
@@ -1133,7 +1162,7 @@ SELECT pg_catalog.setval('public.course_exercise_id_exercise_seq', 1, false);
 -- Name: course_exercise_id_exercise_seq1; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.course_exercise_id_exercise_seq1', 1, false);
+SELECT pg_catalog.setval('public.course_exercise_id_exercise_seq1', 14, true);
 
 
 --
@@ -1147,7 +1176,7 @@ SELECT pg_catalog.setval('public.course_exercise_soal_id_soal_seq', 1, false);
 -- Name: course_exercise_soal_id_soal_seq1; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.course_exercise_soal_id_soal_seq1', 1, false);
+SELECT pg_catalog.setval('public.course_exercise_soal_id_soal_seq1', 31, true);
 
 
 --
@@ -1161,7 +1190,7 @@ SELECT pg_catalog.setval('public.course_id_course_seq', 1, false);
 -- Name: course_id_course_seq1; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.course_id_course_seq1', 2, true);
+SELECT pg_catalog.setval('public.course_id_course_seq1', 13, true);
 
 
 --
@@ -1175,7 +1204,7 @@ SELECT pg_catalog.setval('public.course_materi_id_materi_seq', 1, false);
 -- Name: course_materi_id_materi_seq1; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.course_materi_id_materi_seq1', 1, true);
+SELECT pg_catalog.setval('public.course_materi_id_materi_seq1', 24, true);
 
 
 --
@@ -1189,7 +1218,7 @@ SELECT pg_catalog.setval('public.joint_exercise_id_joint_exercise_seq', 1, false
 -- Name: joint_exercise_id_joint_exercise_seq1; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.joint_exercise_id_joint_exercise_seq1', 1, false);
+SELECT pg_catalog.setval('public.joint_exercise_id_joint_exercise_seq1', 5, true);
 
 
 --
@@ -1203,7 +1232,7 @@ SELECT pg_catalog.setval('public.joint_materi_id_joint_materi_seq', 1, false);
 -- Name: joint_materi_id_joint_materi_seq1; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.joint_materi_id_joint_materi_seq1', 1, false);
+SELECT pg_catalog.setval('public.joint_materi_id_joint_materi_seq1', 11, true);
 
 
 --
@@ -1217,7 +1246,7 @@ SELECT pg_catalog.setval('public.joint_siswa_badges_id_joint_badges_seq', 1, fal
 -- Name: joint_siswa_badges_id_joint_badges_seq1; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.joint_siswa_badges_id_joint_badges_seq1', 1, false);
+SELECT pg_catalog.setval('public.joint_siswa_badges_id_joint_badges_seq1', 29, true);
 
 
 --
@@ -1231,7 +1260,7 @@ SELECT pg_catalog.setval('public.joint_siswa_course_id_joint_course_seq', 1, fal
 -- Name: joint_siswa_course_id_joint_course_seq1; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.joint_siswa_course_id_joint_course_seq1', 1, false);
+SELECT pg_catalog.setval('public.joint_siswa_course_id_joint_course_seq1', 5, true);
 
 
 --
@@ -1245,7 +1274,7 @@ SELECT pg_catalog.setval('public.profil_guru_id_profil_guru_seq', 1, false);
 -- Name: profil_guru_id_profil_guru_seq1; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.profil_guru_id_profil_guru_seq1', 1, false);
+SELECT pg_catalog.setval('public.profil_guru_id_profil_guru_seq1', 9, true);
 
 
 --
@@ -1259,7 +1288,7 @@ SELECT pg_catalog.setval('public.profil_siswa_id_profil_siswa_seq', 1, false);
 -- Name: profil_siswa_id_profil_siswa_seq1; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.profil_siswa_id_profil_siswa_seq1', 1, false);
+SELECT pg_catalog.setval('public.profil_siswa_id_profil_siswa_seq1', 13, true);
 
 
 --
@@ -1364,22 +1393,6 @@ ALTER TABLE ONLY public.joint_exercise
 
 ALTER TABLE ONLY public.joint_materi
     ADD CONSTRAINT joint_materi_pkey PRIMARY KEY (id_joint_materi);
-
-
---
--- Name: joint_siswa_badges joint_siswa_badges_id_badges_key; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.joint_siswa_badges
-    ADD CONSTRAINT joint_siswa_badges_id_badges_key UNIQUE (id_badges);
-
-
---
--- Name: joint_siswa_badges joint_siswa_badges_id_badges_key1; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.joint_siswa_badges
-    ADD CONSTRAINT joint_siswa_badges_id_badges_key1 UNIQUE (id_badges);
 
 
 --

@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import { Op } from 'sequelize';
+import { Op, where } from 'sequelize';
 
 import CourseExercise from "../../models/course/course_exercise_model.js";
 import CourseExerciseSoal from '../../models/course/course_exercise_soal_model.js';
@@ -69,6 +69,7 @@ export const addCourseExercise = async (req, res) => {
 
             code_exercise: codeExercise,
             judul_exercise: judulExercise,
+            point_exercise: 0,
             id_course: idcourse
 
         }
@@ -103,11 +104,25 @@ export const addCourseExerciseSoal = async (req, res) => {
             id_exercise: idExercise
         }
 
+        const query = await CourseExercise.findOne({
+            where: {
+                id_exercise: idExercise
+            }
+        })
+
+        const addPoint = parseInt(query.point_exercise) + parseInt(pointSoal)
+
         await CourseExerciseSoal.create(soal);
 
+        await CourseExercise.update({
+            point_exercise: addPoint
+        }, {
+            where: {
+                id_exercise: query.id_exercise
+            }
+        }
+        )
         res.status(200).json({ msg: 'soal udah ditambahin bosqu!' })
-
-
     } catch (error) {
         console.log(error);
         res.status(403).json('query error gan!')
@@ -180,9 +195,17 @@ export const getAllCourse = async (req, res) => {
 export const getCourseDetailByCode = async (req, res) => {
 
     const { code } = req.params;
+    const refreshToken = req.cookies.refreshToken;
 
     try {
 
+        const { id_akun } = jwt.decode(refreshToken);
+
+        const { id_profil_siswa } = await ProfilSiswa.findOne({
+            where: {
+                id_akun: id_akun
+            }
+        })
 
         const coursedetail = await Course.findOne({
             where: {
@@ -190,11 +213,18 @@ export const getCourseDetailByCode = async (req, res) => {
             }
         })
 
-        const joint = await CourseProfilJoint.findOne({
-            where: {
-                id_course: coursedetail.id_course
-            }
-        })
+        const joint = await CourseProfilJoint.findOne(
+            {
+                include: {
+                    model: Course,
+                    where: {
+                        code_course: code
+                    }
+                },
+                where: {
+                    id_profil_siswa: id_profil_siswa
+                }
+            })
 
         const materi = await CourseMateri.findAll({
             where: {
@@ -367,9 +397,7 @@ export const getAllCourseExercise = async (req, res) => {
             const joint = await ExerciseJoint.findAll({
                 include: CourseExercise,
                 where: {
-
                     id_profil_siswa: queryprofil.id_profil_siswa
-
                 }
             })
 
@@ -556,22 +584,13 @@ export const verifyAnswer = async (req, res) => {
             }
         }
 
-        await ExerciseJoint.update({ isFinished: "true" }, {
-            where: {
-                [Op.and]: [
-                    { id_profil_siswa: id_profil_siswa },
-                    { id_exercise: idexercise }
-                ]
-            }
-        })
-
         const pointFinal = parseInt(point_siswa) + point;
 
         const addedSoal = parseInt(exercise_finished) + 1
 
         const newlevel = levelUp(pointFinal);
 
-        const profilupdate = await ProfilSiswa.update(
+        await ProfilSiswa.update(
             {
                 point_siswa: pointFinal,
                 exercise_finished: addedSoal,
@@ -583,6 +602,16 @@ export const verifyAnswer = async (req, res) => {
                 }
             }
         )
+
+        await ExerciseJoint.update({ isFinished: "true" }, {
+            where: {
+                [Op.and]: [
+                    { id_profil_siswa: id_profil_siswa },
+                    { id_exercise: idexercise }
+                ]
+            }
+        })
+
         const pointBadges = newlevel * 100;
 
         const badgesquery = await Badges.findAll({
@@ -590,9 +619,7 @@ export const verifyAnswer = async (req, res) => {
                 [Op.or]: [
                     { point_badges: pointBadges },
                     { soal_count: addedSoal },
-
                 ]
-
             }
         })
 
@@ -605,23 +632,28 @@ export const verifyAnswer = async (req, res) => {
             }
         })
 
-        const check = await BadgesProfilJoint.findOne({
+        const check = await BadgesProfilJoint.findAll({
             where: {
-                [Op.and]: option,
+                [Op.or]: option,
             }
         })
 
-        if (option.length > 0 && !check) {
-            await BadgesProfilJoint.bulkCreate(option)
-            res.status(200).json({ msg: 'Badges telah didapatkan!' })
+        const filtered = option.filter(e => e.id_badges !== arr[0].id_badges);
+
+        const filteredToSend = arr.filter(e => e.id_badges !== arr[0].id_badges);
+
+        if (check.length === 1) {
+            await BadgesProfilJoint.create(filtered[0])
+            res.json({ data: filteredToSend, result: { benar, salah, point } });
         }
         else {
-            console.log('Badge sudah ada atau belum memenuhi');
-            res.status(200).json({ msg: 'Badges sudah ada atau belum memenuhi' })
+            await BadgesProfilJoint.bulkCreate(option)
+            res.json({ data: badgesquery, result: { benar, salah, point } })
         }
+
     } catch (error) {
         console.log(error);
-        res.status(200).json('badges sudah ada')
+        res.json(error);
     }
 
 }
@@ -669,7 +701,6 @@ export const verifyMateri = async (req, res) => {
             }
         )
 
-
         const pointBadges = newlevel * 100;
 
         const badgesquery = await Badges.findAll({
@@ -677,7 +708,6 @@ export const verifyMateri = async (req, res) => {
                 [Op.or]: [
                     { point_badges: pointBadges },
                     { materi_count: materiFinished },
-
                 ]
 
             }
@@ -692,30 +722,29 @@ export const verifyMateri = async (req, res) => {
             }
         })
 
-        console.log('option')
-
-        const check = await BadgesProfilJoint.findOne({
+        const check = await BadgesProfilJoint.findAll({
             where: {
-                [Op.and]: option,
+                [Op.or]: option,
             }
 
         })
 
-        if (option.length > 0 && !check) {
+        const filtered = option.filter(e => e.id_badges !== arr[0].id_badges);
 
-            await BadgesProfilJoint.bulkCreate(option)
-            res.status(200).json({ msg: 'Badges telah didapatkan!' })
+        const filteredToSend = arr.filter(e => e.id_badges !== arr[0].id_badges);
 
+        if (check.length === 1) {
+            await BadgesProfilJoint.create(filtered[0])
+            res.json({ data: filteredToSend })
         }
         else {
-            console.log('Badges sudah ada atau belum memenuhi');
-            res.status(200).json({ msg: 'Badges sudah ada atau belum memenuhi' })
+            await BadgesProfilJoint.bulkCreate(option)
+            res.json({ data: badgesquery })
         }
-
 
     } catch (error) {
         console.log(error);
-        res.status(200).json('badges sudah ada')
+        res.status(200).json(error)
     }
 }
 
