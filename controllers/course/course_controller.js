@@ -726,7 +726,6 @@ export const verifyMateri = async (req, res) => {
             where: {
                 [Op.or]: option,
             }
-
         })
 
         const filtered = option.filter(e => e.id_badges !== arr[0].id_badges);

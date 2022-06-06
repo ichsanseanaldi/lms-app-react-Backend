@@ -36,8 +36,7 @@ export const Login = async (req, res) => {
         res.cookie('refreshToken', refreshToken, {
             httpOnly: true,
             secure: true,
-            sameSite: None,
-            path: '/',
+            sameSite: 'None',
             maxAge: 24 * 60 * 60 * 1000
         });
 
@@ -66,8 +65,7 @@ export const Logout = async (req, res) => {
             res.clearCookie('refreshToken', {
                 httpOnly: true,
                 secure: true,
-                sameSite: None,
-                path: '/'
+                sameSite: 'None',
             });
 
             return res.sendStatus(200);
