@@ -29,6 +29,9 @@ const CourseExerciseSoal = db.define('course_exercise_soal', {
     option_d: {
         type: DataTypes.STRING
     },
+    option_e: {
+        type: DataTypes.STRING
+    },
     option_key: {
         type: DataTypes.STRING
     },

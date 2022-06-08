@@ -87,7 +87,7 @@ export const addCourseExercise = async (req, res) => {
 
 export const addCourseExerciseSoal = async (req, res) => {
 
-    const { nomorSoal, pertanyaanSoal, optionA, optionB, optionC, optionD, optionKey, pointSoal, idExercise } = req.body;
+    const { nomorSoal, pertanyaanSoal, optionA, optionB, optionC, optionD, optionE, optionKey, pointSoal, idExercise } = req.body;
 
     try {
 
@@ -99,6 +99,7 @@ export const addCourseExerciseSoal = async (req, res) => {
             option_b: optionB,
             option_c: optionC,
             option_d: optionD,
+            option_e: optionE,
             option_key: optionKey,
             point_soal: pointSoal,
             id_exercise: idExercise

@@ -6,7 +6,7 @@ import Badges from '../../models/badges/badges_model.js'
 
 export const addProfilSiswa = async (req, res) => {
 
-    const { namaSiswa } = req.body;
+    const { namaSiswa, avatarSvg } = req.body;
     const refreshToken = req.cookies.refreshToken
 
     try {
@@ -20,6 +20,7 @@ export const addProfilSiswa = async (req, res) => {
             materi_finished: 0,
             exercise_finished: 0,
             course_finished: 0,
+            avatarSvg: avatarSvg,
             id_akun: id_akun
         }
 
@@ -87,7 +88,7 @@ export const getAllProfilSiswa = async (req, res) => {
     try {
 
         const query_profil = await ProfilSiswa.findAll({
-            attributes: ['id_profil_siswa', 'nama_siswa', 'point_siswa', 'level_siswa']
+            attributes: ['id_profil_siswa', 'nama_siswa', 'point_siswa', 'level_siswa', 'avatarSvg']
         });
 
         if (query_profil.length > 0) {

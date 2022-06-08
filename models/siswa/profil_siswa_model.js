@@ -25,6 +25,9 @@ const ProfilSiswa = db.define('profil_siswa', {
     },
     exercise_finished: {
         type: DataTypes.INTEGER
+    },
+    avatarSvg: {
+        type: DataTypes.TEXT
     }
 }, {
     freezeTableName: true
