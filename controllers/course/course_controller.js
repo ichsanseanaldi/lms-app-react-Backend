@@ -396,7 +396,10 @@ export const getAllCourseExercise = async (req, res) => {
             })
 
             const joint = await ExerciseJoint.findAll({
-                include: CourseExercise,
+                include: {
+                    model: CourseExercise,
+                    where: { id_course: idcourse }
+                },
                 where: {
                     id_profil_siswa: queryprofil.id_profil_siswa
                 }
