@@ -23,7 +23,8 @@ try {
 
 app.use(cors({
     credentials: true,
-    origin: 'https://fwtl.netlify.app',
+    origin: true,
+    // origin: 'https://fwtl.netlify.app',
 }))
 
 app.use(cookieParser());
